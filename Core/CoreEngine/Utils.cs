@@ -70,56 +70,56 @@ namespace CoreEngine
         {
             var tickets = new List<TicketCard>();
 
-            // --- LONG ROUTES (6 Cards - Blue Backed) ---
-            tickets.Add(new TicketCard(new City("Edinburgh"), new City("Athina"), 21));
-            tickets.Add(new TicketCard(new City("København"), new City("Erzurum"), 21));
-            tickets.Add(new TicketCard(new City("Cádiz"), new City("Stockholm"), 21));
-            tickets.Add(new TicketCard(new City("Brest"), new City("Petrograd"), 20));
-            tickets.Add(new TicketCard(new City("Lisboa"), new City("Danzig"), 20));
-            tickets.Add(new TicketCard(new City("Palermo"), new City("Moskva"), 20));
+            //// --- LONG ROUTES (6 Cards - Blue Backed) ---
+            //tickets.Add(new TicketCard(new City("Edinburgh"), new City("Athina"), 21));
+            //tickets.Add(new TicketCard(new City("København"), new City("Erzurum"), 21));
+            //tickets.Add(new TicketCard(new City("Cádiz"), new City("Stockholm"), 21));
+            //tickets.Add(new TicketCard(new City("Brest"), new City("Petrograd"), 20));
+            //tickets.Add(new TicketCard(new City("Lisboa"), new City("Danzig"), 20));
+            //tickets.Add(new TicketCard(new City("Palermo"), new City("Moskva"), 20));
 
-            // --- REGULAR ROUTES (40 Cards) ---
-            tickets.Add(new TicketCard(new City("Madrid"), new City("Moskva"), 25));
-            tickets.Add(new TicketCard(new City("Amsterdam"), new City("Pamplona"), 22));
-            tickets.Add(new TicketCard(new City("Brest"), new City("Venezia"), 21));
-            tickets.Add(new TicketCard(new City("Berlin"), new City("Roma"), 20));
-            tickets.Add(new TicketCard(new City("London"), new City("Berlin"), 20));
-            tickets.Add(new TicketCard(new City("Athina"), new City("Wilno"), 17));
-            tickets.Add(new TicketCard(new City("Madrid"), new City("Dieppe"), 17));
-            tickets.Add(new TicketCard(new City("London"), new City("Wien"), 13));
-            tickets.Add(new TicketCard(new City("Paris"), new City("Wien"), 13));
-            tickets.Add(new TicketCard(new City("Stockholm"), new City("Wien"), 13));
-            tickets.Add(new TicketCard(new City("Athina"), new City("Angora"), 12));
-            tickets.Add(new TicketCard(new City("Barcelona"), new City("München"), 12));
-            tickets.Add(new TicketCard(new City("Berlin"), new City("Moskva"), 12));
-            tickets.Add(new TicketCard(new City("Paris"), new City("Roma"), 12));
-            tickets.Add(new TicketCard(new City("Budapest"), new City("Sofia"), 11));
-            tickets.Add(new TicketCard(new City("London"), new City("Paris"), 11));
-            tickets.Add(new TicketCard(new City("München"), new City("Venezia"), 11));
-            tickets.Add(new TicketCard(new City("Paris"), new City("Berlin"), 11));
-            tickets.Add(new TicketCard(new City("Roma"), new City("Smyrna"), 11));
-            tickets.Add(new TicketCard(new City("Warszawa"), new City("Smolensk"), 11));
-            tickets.Add(new TicketCard(new City("Essen"), new City("Kyiv"), 10));
-            tickets.Add(new TicketCard(new City("Madrid"), new City("Zürich"), 10));
-            tickets.Add(new TicketCard(new City("Roma"), new City("Athina"), 10));
-            tickets.Add(new TicketCard(new City("Venezia"), new City("Constantinople"), 10));
-            tickets.Add(new TicketCard(new City("Kyiv"), new City("Rostov"), 9));
-            tickets.Add(new TicketCard(new City("Kyiv"), new City("Sochi"), 9));
-            tickets.Add(new TicketCard(new City("Marseille"), new City("Essen"), 9));
-            tickets.Add(new TicketCard(new City("Paris"), new City("Marseille"), 9));
-            tickets.Add(new TicketCard(new City("Sarajevo"), new City("Sevastopol"), 9));
-            tickets.Add(new TicketCard(new City("Stockholm"), new City("København"), 9));
-            tickets.Add(new TicketCard(new City("Angora"), new City("Kharkov"), 8));
-            tickets.Add(new TicketCard(new City("Berlin"), new City("Bucuresti"), 8));
-            tickets.Add(new TicketCard(new City("London"), new City("Edinburgh"), 8));
-            tickets.Add(new TicketCard(new City("München"), new City("Budapest"), 8));
-            tickets.Add(new TicketCard(new City("Palermo"), new City("Constantinople"), 8));
-            tickets.Add(new TicketCard(new City("Sofia"), new City("Smyrna"), 8));
-            tickets.Add(new TicketCard(new City("Zürich"), new City("Brindisi"), 8));
-            tickets.Add(new TicketCard(new City("Frankfurt"), new City("Praha"), 7));
-            tickets.Add(new TicketCard(new City("Zürich"), new City("Frankfurt"), 7));
-            tickets.Add(new TicketCard(new City("Madrid"), new City("Lisboa"), 6));
-            tickets.Add(new TicketCard(new City("Rostov"), new City("Erzurum"), 5));
+            //// --- REGULAR ROUTES (40 Cards) ---
+            //tickets.Add(new TicketCard(new City("Madrid"), new City("Moskva"), 25));
+            //tickets.Add(new TicketCard(new City("Amsterdam"), new City("Pamplona"), 22));
+            //tickets.Add(new TicketCard(new City("Brest"), new City("Venezia"), 21));
+            //tickets.Add(new TicketCard(new City("Berlin"), new City("Roma"), 20));
+            //tickets.Add(new TicketCard(new City("London"), new City("Berlin"), 20));
+            //tickets.Add(new TicketCard(new City("Athina"), new City("Wilno"), 17));
+            //tickets.Add(new TicketCard(new City("Madrid"), new City("Dieppe"), 17));
+            //tickets.Add(new TicketCard(new City("London"), new City("Wien"), 13));
+            //tickets.Add(new TicketCard(new City("Paris"), new City("Wien"), 13));
+            //tickets.Add(new TicketCard(new City("Stockholm"), new City("Wien"), 13));
+            //tickets.Add(new TicketCard(new City("Athina"), new City("Angora"), 12));
+            //tickets.Add(new TicketCard(new City("Barcelona"), new City("München"), 12));
+            //tickets.Add(new TicketCard(new City("Berlin"), new City("Moskva"), 12));
+            //tickets.Add(new TicketCard(new City("Paris"), new City("Roma"), 12));
+            //tickets.Add(new TicketCard(new City("Budapest"), new City("Sofia"), 11));
+            //tickets.Add(new TicketCard(new City("London"), new City("Paris"), 11));
+            //tickets.Add(new TicketCard(new City("München"), new City("Venezia"), 11));
+            //tickets.Add(new TicketCard(new City("Paris"), new City("Berlin"), 11));
+            //tickets.Add(new TicketCard(new City("Roma"), new City("Smyrna"), 11));
+            //tickets.Add(new TicketCard(new City("Warszawa"), new City("Smolensk"), 11));
+            //tickets.Add(new TicketCard(new City("Essen"), new City("Kyiv"), 10));
+            //tickets.Add(new TicketCard(new City("Madrid"), new City("Zürich"), 10));
+            //tickets.Add(new TicketCard(new City("Roma"), new City("Athina"), 10));
+            //tickets.Add(new TicketCard(new City("Venezia"), new City("Constantinople"), 10));
+            //tickets.Add(new TicketCard(new City("Kyiv"), new City("Rostov"), 9));
+            //tickets.Add(new TicketCard(new City("Kyiv"), new City("Sochi"), 9));
+            //tickets.Add(new TicketCard(new City("Marseille"), new City("Essen"), 9));
+            //tickets.Add(new TicketCard(new City("Paris"), new City("Marseille"), 9));
+            //tickets.Add(new TicketCard(new City("Sarajevo"), new City("Sevastopol"), 9));
+            //tickets.Add(new TicketCard(new City("Stockholm"), new City("København"), 9));
+            //tickets.Add(new TicketCard(new City("Angora"), new City("Kharkov"), 8));
+            //tickets.Add(new TicketCard(new City("Berlin"), new City("Bucuresti"), 8));
+            //tickets.Add(new TicketCard(new City("London"), new City("Edinburgh"), 8));
+            //tickets.Add(new TicketCard(new City("München"), new City("Budapest"), 8));
+            //tickets.Add(new TicketCard(new City("Palermo"), new City("Constantinople"), 8));
+            //tickets.Add(new TicketCard(new City("Sofia"), new City("Smyrna"), 8));
+            //tickets.Add(new TicketCard(new City("Zürich"), new City("Brindisi"), 8));
+            //tickets.Add(new TicketCard(new City("Frankfurt"), new City("Praha"), 7));
+            //tickets.Add(new TicketCard(new City("Zürich"), new City("Frankfurt"), 7));
+            //tickets.Add(new TicketCard(new City("Madrid"), new City("Lisboa"), 6));
+            //tickets.Add(new TicketCard(new City("Rostov"), new City("Erzurum"), 5));
 
             return tickets;
         }
@@ -180,14 +180,19 @@ namespace CoreEngine
     public class City
     {
         public string Name { get; init;  }
-        public bool HasStation { get; private set; }
+        public Player? StationOwner { get; private set; }
 
         public City(string name)
         {
             this.Name = name;
         }
+        public bool HasStation => StationOwner != null;
 
-
+        public void BuildStation(Player player)
+        {
+            if (StationOwner != null) { throw new Exception("Illegal game state. Trying to build station in occupied city."); }
+            StationOwner = player;
+        }
     }
 
     public class Route
@@ -200,22 +205,18 @@ namespace CoreEngine
         public int LocomotivesNeeded { get; }
         public bool IsTunnel { get; }
 
-        public Route(City origin, City destination, int length, TrainColor color, int locomotivesNeeded = 0, bool isTunnel)
+        public Route(City origin, City destination, int length, TrainColor color, bool isTunnel, int locomotivesNeeded = 0)
         {
             this.Origin = origin;
             this.Destination = destination;
             this.Length = length;
             this.Color = color;
-            this.LocomotivesNeeded = locomotivesNeeded;
             this.IsTunnel = isTunnel;
+            this.LocomotivesNeeded = locomotivesNeeded;
         }
 
         public bool IsClaimed => ClaimedBy != null;
     }
 
-    public struct PlayerChoice
-    {
-        public Object value;
-        public string description;
-    }
+    public record PlayerChoice(object value, string Desc);
 }

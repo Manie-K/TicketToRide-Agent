@@ -6,9 +6,9 @@
         public string Name;
         public string Description;
 
-        public abstract bool CanExecute(); //CurrentPlayer ?
+        public abstract bool CanExecute(Player currentPlayer);
 
-        public abstract void Execute();
+        public abstract void Execute(Player currentPlayer);
     }
 
 
@@ -16,7 +16,9 @@
     {
         public static readonly BuildTrainStationGA Instance = new BuildTrainStationGA();
 
-        public override void Execute()
+        public override bool CanExecute(Player currentPlayer) { return currentPlayer.HasNCardOfSameColor(currentPlayer.StationsCount + 1); } 
+
+        public override void Execute(Player currentPlayer)
         {
 
             List<PlayerChoice> availableCities = new();
@@ -25,7 +27,7 @@
             {
                 if (!city.HasStation)
                 {
-                    availableCities.Add(new PlayerChoice { availableCities.Count, city.Name });
+                    availableCities.Add(new PlayerChoice(availableCities.Count, city.Name ));
                 }
             });
 
@@ -33,9 +35,9 @@
             City selectedCity = GameManager.Instance.Cities[selectedCityIndex];
 
             //numberOfRequiredCardOfTheSameColor 
-            int requiredCardsCount = Player.CurrentPlayer.StationsCount + 1;
+            int requiredCardsCount = currentPlayer.StationsCount + 1;
 
-            List<TrainCard> playerCards = Player.CurrentPlayer.TrainsHand;
+            List<TrainCard> playerCards = currentPlayer.TrainsHand;
             List<TrainColor> availableColors = Utils.FindAvailableColorsByCount(playerCards, requiredCardsCount);
 
             if (availableColors.Count == 0)
@@ -47,9 +49,9 @@
             int selectedColorIndex = GameManager.Instance.GetChoiceFromCurrentPlayer(availableColorsToDiscard);
             TrainColor colorToDiscard = availableColors[selectedColorIndex];
 
-            Player.CurrentPlayer.SpendNCardsOfColor(requiredCardsCount, colorToDiscard);
+            currentPlayer.SpendNCardsOfColor(requiredCardsCount, colorToDiscard);
 
-            selectedCity.BuildStation(Player.CurrentPlayer);
+            selectedCity.BuildStation(currentPlayer);
 
         }
     }
@@ -63,19 +65,14 @@
     {
         public static readonly ClaimRouteGA Instance = new ClaimRouteGA();
 
-        public override bool CanExecute()
+        public override bool CanExecute(Player currentPlayer)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        public override void Execute()
+        public override void Execute(Player currentPlayer)
         {
-            throw new NotImplementedException();
+            return;
         }
     }
-
-    //public class DrawTicketsGA : GameAction
-    //{
-
-    //}
 }

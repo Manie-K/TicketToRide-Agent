@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,20 +7,32 @@ using System.Threading.Tasks;
 
 namespace CoreEngine
 {
+    public delegate int PlayerChoiceDelegate(IEnumerable idk);
+    
     public class Player
-    {
-        public static Player CurrentPlayer { get; private set; }
-
+    { 
         public List<TicketCard> TicketsHand { get; private set; }
         public List<TrainCard> TrainsHand { get; private set; }
     
         public int StationsCount { get; private set; }
 
+        public PlayerChoiceDelegate InputFunc { get; init; }
+
+        public Player(PlayerChoiceDelegate inputFunc)
+        {
+            this.InputFunc = inputFunc;
+        }
+
+        public Player()
+        {
+            TicketsHand = new List<TicketCard>();
+            TrainsHand = new List<TrainCard>();
+        }
+
         public bool SpendNCardsOfColor(int n, TrainColor color)
         {
             int spend = 0;
             List<TrainCard> toBeDiscarded = new();
-
             foreach (var card in TrainsHand)
             {
                 if (card.Color == color)
@@ -45,6 +58,11 @@ namespace CoreEngine
             }
 
             return true;
+        }
+
+        internal bool HasNCardOfSameColor(int v)
+        {
+            return false;
         }
     }
 }

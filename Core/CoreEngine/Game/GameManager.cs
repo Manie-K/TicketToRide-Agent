@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoreEngine.Cards;
+using CoreEngine.GameActions;
+using CoreEngine.Helpers;
 
-namespace CoreEngine
+namespace CoreEngine.Game
 {
     public class GameManager
     {
@@ -18,6 +21,7 @@ namespace CoreEngine
         public List<City> Cities { get; private set; }
         public List<Player> Players { get; private set; }
 
+
         private readonly GameAction[] allGameActions = 
         {
             BuildTrainStationGA.Instance,
@@ -25,6 +29,7 @@ namespace CoreEngine
             //more actions here
 
         };
+
 
         public GameManager(List<Player> agents)
         {
@@ -92,7 +97,7 @@ namespace CoreEngine
 
         public int GetChoiceFromCurrentPlayer(List<PlayerChoice> choices)
         {
-            var currentPlayer = this.CurrentPlayer;
+            var currentPlayer = CurrentPlayer;
             int index = currentPlayer.InputFunc?.Invoke(choices) ?? -1;
             return index;
         }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
+using CoreEngine.Cards;
 
-namespace CoreEngine
+namespace CoreEngine.Game
 {
     public delegate int PlayerChoiceDelegate(IEnumerable idk);
     
@@ -13,21 +9,18 @@ namespace CoreEngine
     { 
         public List<TicketCard> TicketsHand { get; private set; }
         public List<TrainCard> TrainsHand { get; private set; }
-    
         public int StationsCount { get; private set; }
-
         public PlayerChoiceDelegate InputFunc { get; init; }
+
 
         public Player(PlayerChoiceDelegate inputFunc)
         {
-            this.InputFunc = inputFunc;
-        }
+            InputFunc = inputFunc;
 
-        public Player()
-        {
             TicketsHand = new List<TicketCard>();
             TrainsHand = new List<TrainCard>();
         }
+
 
         public bool SpendNCardsOfColor(int n, TrainColor color)
         {
@@ -60,9 +53,26 @@ namespace CoreEngine
             return true;
         }
 
-        internal bool HasNCardOfSameColor(int v)
+        internal bool HasNCardOfSameColor(int n)
         {
-            return false;
+            int locomotiveCounts = 0;
+            int maxAvailable = 0;
+
+            var availableColors = Utils.GetCardsColorMap(TrainsHand);
+
+            if (availableColors.ContainsKey(TrainColor.Locomotive))
+            {
+                locomotiveCounts = availableColors[TrainColor.Locomotive];
+            }
+
+            foreach (var pair in availableColors)
+            {
+                if (pair.Key == TrainColor.Locomotive) continue;
+
+                maxAvailable = Math.Max(maxAvailable, pair.Value);
+            }
+
+            return maxAvailable + locomotiveCounts >= n;
         }
     }
 }

@@ -1,17 +1,8 @@
-﻿namespace CoreEngine
+﻿using CoreEngine.Cards;
+using CoreEngine.Game;
+
+namespace CoreEngine.GameActions
 {
-
-    public abstract class GameAction
-    {
-        public string Name;
-        public string Description;
-
-        public abstract bool CanExecute(Player currentPlayer);
-
-        public abstract void Execute(Player currentPlayer);
-    }
-
-
     public class BuildTrainStationGA : GameAction
     {
         public static readonly BuildTrainStationGA Instance = new BuildTrainStationGA();
@@ -53,26 +44,6 @@
 
             selectedCity.BuildStation(currentPlayer);
 
-        }
-    }
-
-    //public class DrawCardsGA : GameAction
-    //{
-
-    //}
-
-    public class ClaimRouteGA : GameAction
-    {
-        public static readonly ClaimRouteGA Instance = new ClaimRouteGA();
-
-        public override bool CanExecute(Player currentPlayer)
-        {
-            return true;
-        }
-
-        public override void Execute(Player currentPlayer)
-        {
-            return;
         }
     }
 }

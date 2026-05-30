@@ -1,49 +1,85 @@
-﻿using CoreEngine.Cards;
+using CoreEngine.Cards;
 using CoreEngine.Game;
+using CoreEngine.Helpers;
 
 namespace CoreEngine.GameActions
 {
+    /// <summary>
+    /// Build Train Station action.
+    ///
+    /// A player may build at most 3 stations during the game.
+    /// Cost: 1 same-color card for the 1st station, 2 for the 2nd, 3 for the 3rd.
+    /// Locomotives count as wild. A station may be built in any unoccupied city.
+    ///
+    /// Fixes vs. original stub:
+    ///   • CanExecute checks both station availability AND that a valid payment exists.
+    ///   • Execute builds the color-choice list correctly (was empty in original).
+    ///   • StationsRemaining is decremented on the player after building.
+    /// </summary>
     public class BuildTrainStationGA : GameAction
     {
         public static readonly BuildTrainStationGA Instance = new BuildTrainStationGA();
 
-        public override bool CanExecute(Player currentPlayer) { return currentPlayer.HasNCardOfSameColor(currentPlayer.StationsCount + 1); } 
+        private BuildTrainStationGA()
+        {
+            Name = "Build Train Station";
+            Description = "Build a station in an unoccupied city to gain access to one opponent route.";
+        }
+
+        public override bool CanExecute(Player currentPlayer)
+        {
+            if (currentPlayer.StationsRemaining <= 0) return false;
+
+            int requiredCards = currentPlayer.StationsBuilt + 1;  // 1st→1, 2nd→2, 3rd→3
+            return currentPlayer.HasNCardOfSameColor(requiredCards);
+        }
 
         public override void Execute(Player currentPlayer)
         {
+            var gm = GameManager.Instance;
+            int requiredCards = currentPlayer.StationsBuilt + 1;
 
-            List<PlayerChoice> availableCities = new();
+            // ── Step 1: choose an unoccupied city ─────────────────────────────────
+            var availableCities = gm.Cities
+                .Where(c => !c.HasStation)
+                .Select(c => new PlayerChoice(c, c.Name))
+                .ToList();
 
-            GameManager.Instance.Cities.ForEach(city =>
+            if (availableCities.Count == 0)
+                throw new InvalidOperationException("No cities available for a station.");
+
+            int cityIdx = gm.GetChoiceFromCurrentPlayer(availableCities);
+            City selectedCity = (City)availableCities[cityIdx].value!;
+
+            // ── Step 2: choose a payment combo ────────────────────────────────────
+            // Station cost accepts any one color (or locomotives as wild).
+            var spends = PaymentPlanner.EnumerateSpends(
+                currentPlayer.TrainsHand,
+                routeLength: requiredCards,
+                routeColor: TrainColor.Wild,
+                minLocomotives: 0);
+
+            SpendOption spend;
+            if (spends.Count == 1)
             {
-                if (!city.HasStation)
-                {
-                    availableCities.Add(new PlayerChoice(availableCities.Count, city.Name ));
-                }
-            });
-
-            int selectedCityIndex = GameManager.Instance.GetChoiceFromCurrentPlayer(availableCities);
-            City selectedCity = GameManager.Instance.Cities[selectedCityIndex];
-
-            //numberOfRequiredCardOfTheSameColor 
-            int requiredCardsCount = currentPlayer.StationsCount + 1;
-
-            List<TrainCard> playerCards = currentPlayer.TrainsHand;
-            List<TrainColor> availableColors = Utils.FindAvailableColorsByCount(playerCards, requiredCardsCount);
-
-            if (availableColors.Count == 0)
+                spend = spends[0];
+            }
+            else
             {
-                throw new Exception("We fucked up - player should have available cards otherwise he could not have picked this action.");
+                var spendChoices = spends
+                    .Select(s => new PlayerChoice(s, s.Description))
+                    .ToList();
+                int spendIdx = gm.GetChoiceFromCurrentPlayer(spendChoices);
+                spend = spends[spendIdx];
             }
 
-            List<PlayerChoice> availableColorsToDiscard = new List<PlayerChoice>();
-            int selectedColorIndex = GameManager.Instance.GetChoiceFromCurrentPlayer(availableColorsToDiscard);
-            TrainColor colorToDiscard = availableColors[selectedColorIndex];
-
-            currentPlayer.SpendNCardsOfColor(requiredCardsCount, colorToDiscard);
-
+            // ── Commit ────────────────────────────────────────────────────────────
+            currentPlayer.CommitSpend(spend);
             selectedCity.BuildStation(currentPlayer);
+            currentPlayer.StationsRemaining--;
 
+            Console.WriteLine($"  {currentPlayer} builds station in {selectedCity.Name} " +
+                              $"(cost: {spend.Description}). Stations remaining: {currentPlayer.StationsRemaining}");
         }
     }
 }

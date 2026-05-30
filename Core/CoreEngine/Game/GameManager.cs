@@ -9,6 +9,13 @@ using CoreEngine.Helpers;
 
 namespace CoreEngine.Game
 {
+    public enum GameMode
+    {
+        Live,
+        Record,
+        Replay
+    }
+
     public class GameManager
     {
         public static GameManager Instance { get; private set; }
@@ -21,6 +28,9 @@ namespace CoreEngine.Game
         public List<City> Cities { get; private set; }
         public List<Player> Players { get; private set; }
 
+        public GameMode GameMode { get; init; }
+
+        private readonly Recorder? recorder;
 
         private readonly GameAction[] allGameActions = 
         {
@@ -30,9 +40,15 @@ namespace CoreEngine.Game
 
         };
 
+        
 
-        public GameManager(List<Player> agents)
+        public GameManager(List<Player> agents, GameMode gameMode = GameMode.Live)
         {
+            GameMode = gameMode;
+
+            // Decide where to save etc.
+            if (GameMode != GameMode.Live) recorder = new Recorder(Path.GetTempFileName(), GameMode);
+
             Players = agents;
             CurrentPlayer = agents[0];
 
@@ -52,6 +68,11 @@ namespace CoreEngine.Game
 
         public void Start()
         {
+            if (recorder?.Mode == RecorderMode.Record)
+            {
+                // Record initial game state, decks, player sequence etc.
+            }
+
             bool quit = false;
 
             while (!quit)
@@ -97,8 +118,20 @@ namespace CoreEngine.Game
 
         public int GetChoiceFromCurrentPlayer(List<PlayerChoice> choices)
         {
+            if (recorder?.Mode == RecorderMode.Replay)
+            {
+                int index = recorder.GetNextPlayerChoice();
+                return index;
+            }
+
             var currentPlayer = CurrentPlayer;
             int index = currentPlayer.InputFunc?.Invoke(choices) ?? -1;
+
+            if (recorder?.Mode == RecorderMode.Record)
+            {
+                recorder.RecordPlayerChoice(index); //Maybe currentPlayer isnt needed?
+            }
+
             return index;
         }
     }

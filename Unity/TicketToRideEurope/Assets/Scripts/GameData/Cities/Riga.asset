@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Riga
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Riga
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 2.64, y: 4.02}

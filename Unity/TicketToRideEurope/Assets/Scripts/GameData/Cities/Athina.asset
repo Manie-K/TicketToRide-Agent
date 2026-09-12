@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Athina
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Athina
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 2.39, y: -4.02}

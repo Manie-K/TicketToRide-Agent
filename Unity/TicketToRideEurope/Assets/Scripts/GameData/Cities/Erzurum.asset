@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Erzurum
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Erzurum
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 6.51, y: -3.69}

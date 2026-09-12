@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Angora
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Angora
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 5.34, y: -4.01}

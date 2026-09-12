@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Kyiv
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Kyiv
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 4.36, y: 0.91}

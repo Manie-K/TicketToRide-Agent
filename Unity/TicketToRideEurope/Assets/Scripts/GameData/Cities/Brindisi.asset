@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Brindisi
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Brindisi
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 0.62, y: -2.9}

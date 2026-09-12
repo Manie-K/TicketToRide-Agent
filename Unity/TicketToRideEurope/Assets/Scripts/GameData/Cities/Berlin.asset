@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Berlin
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Berlin
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: -0.19, y: 1.55}

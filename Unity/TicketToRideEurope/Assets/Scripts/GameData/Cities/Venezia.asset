@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Venezia
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Venezia
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: -0.76, y: -1.23}

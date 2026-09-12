@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Petrograd
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Petrograd
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 5.1, y: 4.05}

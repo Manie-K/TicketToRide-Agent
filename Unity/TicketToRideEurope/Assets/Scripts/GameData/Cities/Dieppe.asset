@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Dieppe
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Dieppe
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: -4.33, y: 0.67}

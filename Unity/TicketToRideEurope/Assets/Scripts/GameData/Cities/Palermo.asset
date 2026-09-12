@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Palermo
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Palermo
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: -0.09, y: -4.39}

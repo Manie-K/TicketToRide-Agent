@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Smolensk
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Smolensk
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 5.27, y: 2.01}

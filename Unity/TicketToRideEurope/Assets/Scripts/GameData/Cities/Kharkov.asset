@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Kharkov
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Kharkov
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 6.28, y: 0.16}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Wilno
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Wilno
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 3.76, y: 2.05}

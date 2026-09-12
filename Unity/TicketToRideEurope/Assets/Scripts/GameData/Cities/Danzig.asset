@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Danzig
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Danzig
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 1.46, y: 2.71}

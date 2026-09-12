@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Marseille
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Marseille
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: -2.3, y: -2.11}

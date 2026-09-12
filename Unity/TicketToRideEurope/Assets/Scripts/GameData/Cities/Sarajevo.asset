@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Sarajevo
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Sarajevo
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 1.69, y: -2.24}

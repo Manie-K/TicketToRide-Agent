@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Smyrna
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Smyrna
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 3.61, y: -4.36}

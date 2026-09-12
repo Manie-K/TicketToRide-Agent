@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Roma
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Roma
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: -0.65, y: -2.52}

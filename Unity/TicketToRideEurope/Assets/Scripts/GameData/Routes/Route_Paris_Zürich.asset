@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60541a37a980ac7409d6851b21431acd, type: 3}
+  m_Name: "Route_Paris_Z\xFCrich"
+  m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.RouteData
+  Origin: {fileID: 11400000, guid: fa061d1eb6489dc4fbfc215101e24d6c, type: 2}
+  Destination: {fileID: 11400000, guid: 12b43cbf85474114eaf053c6037b339b, type: 2}
+  Length: 3
+  Color: 9
+  IsTunnel: 1
+  LocomotivesNeeded: 0

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Sevastopol
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Sevastopol
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: 5.48, y: -1.64}

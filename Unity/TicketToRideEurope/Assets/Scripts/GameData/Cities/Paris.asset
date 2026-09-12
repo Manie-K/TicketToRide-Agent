@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Paris
   m_EditorClassIdentifier: Assembly-CSharp::CoreEngine.UnityData.CityData
   CityName: Paris
-  BoardPosition: {x: 0, y: 0}
+  BoardPosition: {x: -3.59, y: 0.06}

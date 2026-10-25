@@ -56,16 +56,47 @@ class TicketToRideEnv(gym.Env):
         return self._get_obs(), self._get_info()
 
     def step(self, action: int):
+        # 1. Record the score and state BEFORE the move
+        score_before = self.gm.CurrentPlayer.Score
+        trains_before = self.gm.CurrentPlayer.TrainsRemaining
+
+        # 2. Advance the C# simulation by one step
         self.gm.Step(action)
-
-        #TODO: calculate partial rewards
         done = self.gm.IsGameOver
-        reward = 1.0 if done else 0.0
 
+        # 3. Record the state AFTER the move
+        score_after = self.gm.CurrentPlayer.Score
+        trains_after = self.gm.CurrentPlayer.TrainsRemaining
+
+        # 4. Initialize reward
+        reward = 0.0
+
+        # CURRENT GAINS (Dense rewards):
+        # A. Points gained from claiming routes (scaled down to avoid inflated rewards)
+        points_gained = score_after - score_before
+        if points_gained > 0:
+            reward += points_gained * 0.1
+
+        # B. Incentive for simply playing train cars from the hand (building anything)
+        trains_placed = trains_before - trains_after
+        if trains_placed > 0:
+            reward += trains_placed * 0.05
+
+        # END-GAME REWARDS (Sparse rewards):
+        if done:
+            # Determine the winner (the one with the highest score)
+            best_score = max(p.Score for p in self.gm.Players)
+            if self.gm.CurrentPlayer.Score == best_score:
+                reward += 10.0  # Large bonus for winning the game
+            else:
+                reward -= 5.0  # Penalty for losing
+
+        # Return the updated observation vector, reward, done flag, truncated flag, and info dict
         return self._get_obs(), reward, done, False, self._get_info()
 
     def _get_obs(self):
-        return np.zeros(self.observation_space.shape, dtype=np.float32)
+        state_array = self.gm.GetGameStateVector(self.gm.CurrentPlayer)
+        return np.array(list(state_array), dtype=np.float32)
 
     def _get_info(self):
         num_choices = self.gm.CurrentChoices.Count

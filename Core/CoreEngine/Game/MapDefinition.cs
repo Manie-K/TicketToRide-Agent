@@ -274,5 +274,9 @@ namespace CoreEngine.Game
             new TicketCard(C("Athina"),       C("Angora"),         5),
             new TicketCard(C("Budapest"),     C("Sofia"),          5)
         };
+
+        public static readonly IReadOnlyList<TicketCard> AllTickets =
+            BuildLongRouteTickets().Concat(BuildRegularTickets()).ToList();
+
     }
 }

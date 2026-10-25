@@ -397,5 +397,101 @@ namespace CoreEngine.Game
             var winner = Scorer.DetermineWinner(Players, Routes);
             Console.WriteLine($"\n🏆 Winner: {winner}");
         }
+
+        public float[] GetGameStateVector(Player observer)
+        {
+            var obs = new List<float>();
+
+            // ── 1. AGENT RESOURCES (Normalized to 0.0 - 1.0) ────────────────────
+            obs.Add(observer.TrainsRemaining / 45f);
+            obs.Add(observer.StationsRemaining / 3f);
+            obs.Add(observer.Score / 150f); // 150 is an arbitrary high score in the game
+
+            // Cards in hand (count each of the 9 colors including Locomotives, divided by max 110 cards)
+            var handMap = Utils.GetCardsColorMap(observer.TrainsHand);
+            foreach (TrainColor c in Enum.GetValues<TrainColor>())
+            {
+                if (c == TrainColor.Wild) continue; // Wild is the color of gray routes, not cards
+
+                int count = c == TrainColor.Locomotive
+                    ? observer.TrainsHand.Count(tc => tc.IsLocomotive)
+                    : observer.TrainsHand.Count(tc => tc.Color == c && !tc.IsLocomotive);
+
+                obs.Add(count / 110f);
+            }
+
+            // ── 2. OWNED TICKETS (One-Hot Encoding) ────────────────────────────
+            // Array of zeros and ones for each of the 46 tickets in the game (1 = owned, 0 = not owned)
+            foreach (var ticketDef in MapDefinition.AllTickets)
+            {
+                bool hasTicket = observer.TicketsHand.Any(t =>
+                    t.Origin.Name == ticketDef.Origin.Name &&
+                    t.Destination.Name == ticketDef.Destination.Name);
+
+                obs.Add(hasTicket ? 1f : 0f);
+            }
+
+            // ── 3. BOARD STATE (Routes) ───────────────────────────────────────────
+            // Each route occupies 3 indices: (Is it empty?, Is it mine?, Is it enemy's?)
+            foreach (var route in MapDefinition.Routes)
+            {
+                if (!route.IsClaimed)
+                {
+                    obs.Add(1f); obs.Add(0f); obs.Add(0f); // Empty
+                }
+                else if (route.ClaimedBy == observer)
+                {
+                    obs.Add(0f); obs.Add(1f); obs.Add(0f); // Mine
+                }
+                else
+                {
+                    obs.Add(0f); obs.Add(0f); obs.Add(1f); // Enemy
+                }
+            }
+
+            // ── 4. CARD MARKET (Face-Up Cards) ─────────────────────────────────────
+            var marketCounts = new Dictionary<TrainColor, int>();
+            foreach (var card in FaceUpCards.Where(c => c != null))
+            {
+                marketCounts[card!.Color] = marketCounts.GetValueOrDefault(card.Color) + 1;
+            }
+
+            foreach (TrainColor c in Enum.GetValues<TrainColor>())
+            {
+                if (c == TrainColor.Wild) continue;
+                int count = c == TrainColor.Locomotive
+                    ? FaceUpCards.Count(tc => tc?.IsLocomotive == true)
+                    : marketCounts.GetValueOrDefault(c, 0);
+
+                obs.Add(count / 5f);
+            }
+
+            // ── 5. OPPONENTS (Summary info) ──────────────────────────────
+            int maxOpponents = 4; // For games up to 5 players (4 opponents)
+            int opponentsAdded = 0;
+
+            foreach (var p in Players)
+            {
+                if (p == observer) continue; // Skip ourselves
+
+                obs.Add(p.TrainsRemaining / 45f);
+                obs.Add(p.StationsRemaining / 3f);
+                obs.Add(p.TrainsHand.Count / 110f); // Card count (we don't know the colors, it's a secret!)
+                obs.Add(p.TicketsHand.Count / 46f); // Ticket count
+                obs.Add(p.Score / 150f);
+
+                opponentsAdded++;
+            }
+
+            // Pad with zeros if playing with fewer than 5 players
+            while (opponentsAdded < maxOpponents)
+            {
+                obs.AddRange(new float[] { 0f, 0f, 0f, 0f, 0f });
+                opponentsAdded++;
+            }
+
+            return obs.ToArray();
+        }
+
     }
 }

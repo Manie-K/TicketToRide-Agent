@@ -106,7 +106,7 @@ namespace CoreEngine.Game
             Add("Bruxelles","Frankfurt",  2, TrainColor.Blue);
             Add("Essen",    "Frankfurt",  2, TrainColor.Green);
             Add("Essen",    "Berlin",     2, TrainColor.Blue);
-            Add("Essen",    "Kobenhavn",  3, TrainColor.Blue,  ferryLocos: 1);  // North Sea ferry
+            Add("Essen",    "København",  3, TrainColor.Blue,  ferryLocos: 1);  // North Sea ferry
             Add("Frankfurt","Berlin",     3, TrainColor.Black);
             Add("Frankfurt","München",    2, TrainColor.Pink);
             Add("Frankfurt","Praha",      3, TrainColor.Wild);
@@ -115,9 +115,9 @@ namespace CoreEngine.Game
             Add("Berlin",   "Warszawa",   5, TrainColor.White);
 
             // ── Scandinavia ────────────────────────────────────────────────────────
-            Add("Bergen",   "Kobenhavn",  4, TrainColor.Wild);
+            Add("Bergen",   "København",  4, TrainColor.Wild);
             Add("Bergen",   "Stockholm",  3, TrainColor.Wild);
-            Add("Kobenhavn","Stockholm",  3, TrainColor.White);
+            Add("København","Stockholm",  3, TrainColor.White);
             Add("Stockholm","Petrograd",  8, TrainColor.Wild);   // longest route (21 pts)
             Add("Stockholm","Danzig",     3, TrainColor.Wild);
 
@@ -223,7 +223,7 @@ namespace CoreEngine.Game
         public static List<TicketCard> BuildLongRouteTickets() => new()
         {
             new TicketCard(C("Edinburgh"),  C("Athina"),    21),
-            new TicketCard(C("Kobenhavn"),  C("Erzurum"),   21),
+            new TicketCard(C("København"),  C("Erzurum"),   21),
             new TicketCard(C("Cádiz"),      C("Stockholm"), 21),
             new TicketCard(C("Brest"),      C("Petrograd"), 20),
             new TicketCard(C("Lisboa"),     C("Danzig"),    20),

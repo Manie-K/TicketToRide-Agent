@@ -1,6 +1,9 @@
 using CoreEngine.Cards;
 using CoreEngine.Game;
 using CoreEngine.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CoreEngine.GameActions
 {
@@ -12,9 +15,9 @@ namespace CoreEngine.GameActions
     /// Locomotives count as wild. A station may be built in any unoccupied city.
     ///
     /// Fixes vs. original stub:
-    ///   • CanExecute checks both station availability AND that a valid payment exists.
-    ///   • Execute builds the color-choice list correctly (was empty in original).
-    ///   • StationsRemaining is decremented on the player after building.
+    /// - CanExecute checks both station availability AND that a valid payment exists.
+    /// - Execute uses event-driven architecture (SetPendingChoices) instead of blocking calls.
+    /// - StationsRemaining is decremented on the player after building.
     /// </summary>
     public class BuildTrainStationGA : GameAction
     {
@@ -42,15 +45,35 @@ namespace CoreEngine.GameActions
             // ── Step 1: choose an unoccupied city ─────────────────────────────────
             var availableCities = gm.Cities
                 .Where(c => !c.HasStation)
-                .Select(c => new PlayerChoice(c, c.Name))
                 .ToList();
 
             if (availableCities.Count == 0)
-                throw new InvalidOperationException("No cities available for a station.");
+            {
+                // Edge case fallback
+                gm.EndTurn();
+                return;
+            }
 
-            int cityIdx = gm.GetChoiceFromCurrentPlayer(availableCities);
-            City selectedCity = (City)availableCities[cityIdx].value!;
+            var cityChoices = new List<PlayerChoice>();
+            var cityCallbacks = new List<Action>();
 
+            foreach (var city in availableCities)
+            {
+                cityChoices.Add(new PlayerChoice(city, $"Build station in {city.Name}"));
+
+                cityCallbacks.Add(() =>
+                {
+                    // Callback executed when THIS city is selected by the RL Agent/Human
+                    HandlePaymentSelection(gm, currentPlayer, city, requiredCards);
+                });
+            }
+
+            // Suspend the game and wait for the city selection
+            gm.SetPendingChoices(cityChoices, idx => cityCallbacks[idx]());
+        }
+
+        private void HandlePaymentSelection(GameManager gm, Player currentPlayer, City selectedCity, int requiredCards)
+        {
             // ── Step 2: choose a payment combo ────────────────────────────────────
             // Station cost accepts any one color (or locomotives as wild).
             var spends = PaymentPlanner.EnumerateSpends(
@@ -59,20 +82,41 @@ namespace CoreEngine.GameActions
                 routeColor: TrainColor.Wild,
                 minLocomotives: 0);
 
-            SpendOption spend;
+            if (spends.Count == 0)
+                throw new InvalidOperationException("Valid payment existed during CanExecute but is now missing.");
+
             if (spends.Count == 1)
             {
-                spend = spends[0];
+                // Only one way to pay - auto-resolve and end turn immediately
+                ApplyPaymentAndBuild(gm, currentPlayer, selectedCity, spends[0]);
+                gm.EndTurn();
             }
             else
             {
-                var spendChoices = spends
-                    .Select(s => new PlayerChoice(s, s.Description))
-                    .ToList();
-                int spendIdx = gm.GetChoiceFromCurrentPlayer(spendChoices);
-                spend = spends[spendIdx];
-            }
+                var spendChoices = new List<PlayerChoice>();
+                var spendCallbacks = new List<Action>();
 
+                foreach (var spend in spends)
+                {
+                    spendChoices.Add(new PlayerChoice(spend, spend.Description));
+
+                    spendCallbacks.Add(() =>
+                    {
+                        // Callback executed when THIS payment option is selected
+                        ApplyPaymentAndBuild(gm, currentPlayer, selectedCity, spend);
+
+                        // Turn ends ONLY after payment is resolved
+                        gm.EndTurn();
+                    });
+                }
+
+                // Suspend the game AGAIN for the payment submenu
+                gm.SetPendingChoices(spendChoices, idx => spendCallbacks[idx]());
+            }
+        }
+
+        private void ApplyPaymentAndBuild(GameManager gm, Player currentPlayer, City selectedCity, SpendOption spend)
+        {
             // ── Commit ────────────────────────────────────────────────────────────
             currentPlayer.CommitSpend(spend);
             selectedCity.BuildStation(currentPlayer);

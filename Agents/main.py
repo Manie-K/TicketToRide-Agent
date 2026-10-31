@@ -57,36 +57,31 @@ class TicketToRideEnv(gym.Env):
 
     def step(self, action: int):
         # 1. Record the score and state BEFORE the move
-        score_before = self.gm.CurrentPlayer.Score
-        trains_before = self.gm.CurrentPlayer.TrainsRemaining
+        current_player = self.gm.CurrentPlayer
+        score_before = self.gm.CalculateCurrentScore(current_player)
 
         # 2. Advance the C# simulation by one step
         self.gm.Step(action)
+
         done = self.gm.IsGameOver
 
         # 3. Record the state AFTER the move
-        score_after = self.gm.CurrentPlayer.Score
-        trains_after = self.gm.CurrentPlayer.TrainsRemaining
+        score_after = self.gm.CalculateCurrentScore(current_player) if not done else current_player.Score
 
         # 4. Initialize reward
         reward = 0.0
 
-        # CURRENT GAINS (Dense rewards):
-        # A. Points gained from claiming routes (scaled down to avoid inflated rewards)
-        points_gained = score_after - score_before
-        if points_gained > 0:
-            reward += points_gained * 0.1
+        # TODO: Figure out what to do with this reward (see TODO in main)
 
-        # B. Incentive for simply playing train cars from the hand (building anything)
-        trains_placed = trains_before - trains_after
-        if trains_placed > 0:
-            reward += trains_placed * 0.05
+        # CURRENT GAINS:
+        points_gained = score_after - score_before
+        reward += points_gained * 0.1
 
         # END-GAME REWARDS (Sparse rewards):
         if done:
             # Determine the winner (the one with the highest score)
             best_score = max(p.Score for p in self.gm.Players)
-            if self.gm.CurrentPlayer.Score == best_score:
+            if current_player.Score == best_score:
                 reward += 10.0  # Large bonus for winning the game
             else:
                 reward -= 5.0  # Penalty for losing
@@ -176,6 +171,8 @@ def game_loop():
         action = agent_behaviors[current_idx](obs, info)
 
         obs, reward, done, truncated, info = env.step(action)
+
+    # TODO: Figure out how to pass the reward since right now we have no guarantee that the game will end on our rl agent
 
     print("\n🏆 Game finished! 🏆")
 

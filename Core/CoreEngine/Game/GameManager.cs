@@ -350,29 +350,49 @@ namespace CoreEngine.Game
             }).ToList();
         }
 
+        public readonly struct CurrentScoreBreakdown
+        {
+            public int RoutePoints { get; init; }
+            public int TicketNet { get; init; }
+            public int StationBonus { get; init; }
+            public int Total => RoutePoints + TicketNet + StationBonus;
+        }
+
+        public CurrentScoreBreakdown GetCurrentScoreBreakdown(Player player)
+        {
+            return new CurrentScoreBreakdown
+            {
+                RoutePoints  = player.Score, // claimed routes only, until final scoring
+                TicketNet    = Scorer.ScoreTickets(player, Players, Routes),
+                StationBonus = player.StationsRemaining * 4,
+            };
+        }
+
+        /// <summary>
+        /// Route points + ticket net + unused stations.
+        /// Does not include European Express. Does not mutate player.Score.
+        /// Equivalent to "if the game ended now, except longest-path bonus".
+        /// </summary>
+        public int CalculateCurrentScore(Player player) => GetCurrentScoreBreakdown(player).Total;
+
         // ── End-game scoring ──────────────────────────────────────────────────────
         private void CalculateFinalScores()
         {
             Console.WriteLine("\n═══ FINAL SCORING ═══\n");
 
-            // Station bonus: +4 per unused station
             foreach (var player in Players)
             {
-                int stationBonus = player.StationsRemaining * 4;
-                player.Score += stationBonus;
-                if (stationBonus > 0)
-                    Console.WriteLine($"  {player}: +{stationBonus} pts (station bonus, {player.StationsRemaining} unused)");
+                var b = GetCurrentScoreBreakdown(player);
+
+                Console.WriteLine($"  {player}");
+                Console.WriteLine($"    routes:         {b.RoutePoints,4}");
+                Console.WriteLine($"    tickets:        {(b.TicketNet >= 0 ? "+" : "")}{b.TicketNet}");
+                Console.WriteLine($"    unused stations:{b.StationBonus,4}  ({player.StationsRemaining} × 4)");
+                Console.WriteLine($"    subtotal:       {b.Total,4}  (excludes European Express)");
+
+                player.Score = b.Total;
             }
 
-            // Destination tickets
-            foreach (var player in Players)
-            {
-                int ticketNet = Scorer.ScoreTickets(player, Players, Routes);
-                player.Score += ticketNet;
-                Console.WriteLine($"  {player}: ticket net = {(ticketNet >= 0 ? "+" : "")}{ticketNet}");
-            }
-
-            // Longest continuous path bonus (10 pts)
             var longestPaths = Scorer.FindLongestPaths(Players);
             int maxPath = longestPaths.Values.Max();
             if (maxPath > 0)

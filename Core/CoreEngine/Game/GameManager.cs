@@ -59,8 +59,9 @@ namespace CoreEngine.Game
         // ── Constructor ──────────────────────────────────────────────────────────
         public GameManager(List<Player> agents, GameMode gameMode = GameMode.Live, Random? rng = null)
         {
-            if (Instance != null)
-                throw new InvalidOperationException("GameManager instance already exists.");
+            //TODO: temp workaround, so agent can play multiple games while learning 
+            //if (Instance != null)
+                //throw new InvalidOperationException("GameManager instance already exists.");
             Instance = this;
 
             GameMode = gameMode;

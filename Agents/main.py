@@ -3,19 +3,6 @@ Ticket to Ride Europe – Python agent harness
 =============================================
 
 Uses pythonnet (coreclr) to load the compiled CoreEngine DLL.
-
-Agent types
------------
-HumanAgent        — prints choices and reads from stdin
-ScriptedAgent     — plays a pre-queued list of int indices (deterministic testing)
-RandomAgent       — picks a random valid index (quick smoke-test)
-
-Quick start
------------
-  python main.py                  # 1 human agent (interactive)
-  python main.py --scripted       # 2 scripted agents (deterministic smoke-test)
-  python main.py --random 3       # 3 random agents
-  python main.py --seed 42        # fix RNG seed for reproducible games
 """
 
 from __future__ import annotations
@@ -38,41 +25,64 @@ from CoreEngine import PlayerColor
 from System.Collections.Generic import List  # type: ignore
 from System import Random as DotNetRandom  # type: ignore
 
-# Environment
+# ── RL Imports ────────────────────────────────────────────────────────────────
+from sb3_contrib import MaskablePPO
+from sb3_contrib.common.wrappers import ActionMasker
 
 MAX_POSSIBLE_ACTIONS = 100
 
+# ── Helper for SB3 Action Masking ─────────────────────────────────────────────
+def mask_fn(env: gym.Env) -> np.ndarray:
+    return env.unwrapped._get_info()["action_mask"]
+
 class TicketToRideEnv(gym.Env):
-    def __init__(self, gm: GameManager):
+    def __init__(self, training_mode: bool = False, rl_agent_idx: int = 0):
         super().__init__()
-        self.gm = gm
+        self.training_mode = training_mode
+        self.rl_agent_idx = rl_agent_idx
 
         self.action_space = gym.spaces.Discrete(MAX_POSSIBLE_ACTIONS)
 
-        self.observation_space = gym.spaces.Box(low=0, high=1, shape=(256,), dtype=np.float32)
+        self.observation_space = gym.spaces.Box(low=0, high=1, shape=(390,), dtype=np.float32)
+
+        self.gm = None
 
     def reset(self, seed=None, options=None):
+        current_seed = seed if seed is not None else random.randint(0, 10000)
+
+        cs_agents = List[Player]()
+        cs_agents.Add(Player(None, PlayerColor(0)))
+        cs_agents.Add(Player(None, PlayerColor(1)))
+        cs_agents.Add(Player(None, PlayerColor(2)))
+
+        self.gm = GameManager(cs_agents, GameMode.Live, DotNetRandom(current_seed))
+
         self.gm.BeginGame()
+
+        # If agent is trained and is not the first player, first do other players steps
+        if self.training_mode:
+            self._fast_forward_to_rl_agent()
+
         return self._get_obs(), self._get_info()
 
     def step(self, action: int):
-        # 1. Record the score and state BEFORE the move
-        current_player = self.gm.CurrentPlayer
-        score_before = self.gm.CalculateCurrentScore(current_player)
+        # Record the score and state BEFORE the move
+        rl_player = self.gm.Players[self.rl_agent_idx]
+        score_before = self.gm.CalculateCurrentScore(rl_player)
 
-        # 2. Advance the C# simulation by one step
-        self.gm.Step(action)
+        # Advance the C# simulation by one step
+        self.gm.Step(int(action))
+
+        # If agent is trained, first do other players steps
+        if self.training_mode and not self.gm.IsGameOver:
+            self._fast_forward_to_rl_agent()
 
         done = self.gm.IsGameOver
 
-        # 3. Record the state AFTER the move
-        score_after = self.gm.CalculateCurrentScore(current_player) if not done else current_player.Score
+        # Record the state AFTER the move
+        score_after = self.gm.CalculateCurrentScore(rl_player) if not done else rl_player.Score
 
-        # 4. Initialize reward
         reward = 0.0
-
-        # TODO: Figure out what to do with this reward (see TODO in main)
-
         # CURRENT GAINS:
         points_gained = score_after - score_before
         reward += points_gained * 0.1
@@ -81,7 +91,7 @@ class TicketToRideEnv(gym.Env):
         if done:
             # Determine the winner (the one with the highest score)
             best_score = max(p.Score for p in self.gm.Players)
-            if current_player.Score == best_score:
+            if rl_player.Score == best_score:
                 reward += 10.0  # Large bonus for winning the game
             else:
                 reward -= 5.0  # Penalty for losing
@@ -89,8 +99,18 @@ class TicketToRideEnv(gym.Env):
         # Return the updated observation vector, reward, done flag, truncated flag, and info dict
         return self._get_obs(), reward, done, False, self._get_info()
 
+    def _fast_forward_to_rl_agent(self):
+        while not self.gm.IsGameOver and self.gm.Players.IndexOf(self.gm.CurrentPlayer) != self.rl_agent_idx:
+            choices = self.gm.CurrentChoices
+            if choices.Count > 0:
+                opp_action = random.randrange(choices.Count)
+                self.gm.Step(opp_action)
+            else:
+                break # fallback
+
     def _get_obs(self):
-        state_array = self.gm.GetGameStateVector(self.gm.CurrentPlayer)
+        rl_player = self.gm.Players[self.rl_agent_idx]
+        state_array = self.gm.GetGameStateVector(rl_player)
         return np.array(list(state_array), dtype=np.float32)
 
     def _get_info(self):
@@ -125,57 +145,76 @@ def human_agent(obs, info, gm: GameManager) -> int:
             print("  ✗ Enter an integer.")
 
 def random_agent(obs, info, gm: GameManager) -> int:
-    """Randomly choose one of a available action."""
+    """Randomly choose one of an available action."""
     choices = gm.CurrentChoices
     idx = random.randrange(choices.Count)
     print(f"\n[Random agent {gm.CurrentPlayer.Color}] choose: {choices[idx].Desc}")
     return idx
 
-#TODO: implement RL agent (Stable-Baselines3 for example)
 def rl_agent(obs, info, gm: GameManager, model) -> int:
     """Neural network agent PPO."""
-    # Mask of actions which cannot be execute
+    # Mask of actions which cannot be executed
     action, _states = model.predict(obs, action_masks=info["action_mask"], deterministic=True)
 
     idx = int(action)
     print(f"\n[DRL Agent {gm.CurrentPlayer.Color}] choose: {gm.CurrentChoices[idx].Desc}")
     return idx
 
-#Game loop
+
+# ── Training Loop ─────────────────────────────────────────────────────────────
+def train_loop():
+    print("\n🚂 Starting Training Mode (Fast-Forwarding opponents)...")
+
+    env = TicketToRideEnv(training_mode=True, rl_agent_idx=0)
+
+    env = ActionMasker(env, mask_fn)
+
+    model = MaskablePPO("MlpPolicy", env, verbose=1, learning_rate=0.0003, device="cuda")
+
+    model.learn(total_timesteps=10000)
+
+    model.save("ppo_ticket_to_ride")
+    print("✅ Model trained and saved as 'ppo_ticket_to_ride.zip'")
+
+
+# ── Evaluation / Play Loop ────────────────────────────────────────────────────
 def game_loop():
-    cs_agents = List[Player]()
-    cs_agents.Add(Player(None, PlayerColor(0)))
-    cs_agents.Add(Player(None, PlayerColor(1)))
-    cs_agents.Add(Player(None, PlayerColor(2)))
+    print("\n🚂 Starting Ticket to Ride Europe (Evaluation Mode)...\n")
 
-    gm = GameManager(cs_agents, GameMode.Live, DotNetRandom(42))
+    try:
+        model = MaskablePPO.load("ppo_ticket_to_ride")
+    except FileNotFoundError:
+        print("No model file. Run train_loop() first!")
+        return
 
-    env = TicketToRideEnv(gm)
+    env = TicketToRideEnv(training_mode=False, rl_agent_idx=0)
 
-    agent_behaviors = {
-        0: lambda obs, info: human_agent(obs, info, gm),
-        1: lambda obs, info: random_agent(obs, info, gm),
-        # 1: lambda obs, info: rl_agent(obs, info, gm, ppo_model),
-        2: lambda obs, info: random_agent(obs, info, gm)
-    }
-
-    # game start
-    obs, info = env.reset()
+    obs, info = env.reset(seed=42)  # Stały seed, żebyś mógł analizować grę
     done = False
 
-    print(f"\n🚂  Starting Ticket to Ride Europe with {len(cs_agents)} player(s).\n")
+    gm = env.gm
+
+    print(f"\n🚂 Game started! RL Agent is {gm.Players[0].Color}. You are {gm.Players[1].Color}.\n")
+
+    agent_behaviors = {
+        0: lambda obs, info: rl_agent(obs, info, gm, model),
+        1: lambda obs, info: human_agent(obs, info, gm),
+        2: lambda obs, info: random_agent(obs, info, gm)
+    }
 
     while not done:
         current_idx = info["current_player_idx"]
 
         action = agent_behaviors[current_idx](obs, info)
 
-        obs, reward, done, truncated, info = env.step(action)
-
-    # TODO: Figure out how to pass the reward since right now we have no guarantee that the game will end on our rl agent
+        obs, _, done, _, info = env.step(action)
 
     print("\n🏆 Game finished! 🏆")
 
+    for p in gm.Players:
+        print(f"  {p.Color}: {p.Score} pts")
+
 
 if __name__ == "__main__":
-    game_loop()
+    train_loop()
+    # game_loop()

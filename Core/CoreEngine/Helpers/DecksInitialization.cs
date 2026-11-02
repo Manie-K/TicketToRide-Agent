@@ -78,7 +78,9 @@ namespace CoreEngine.Helpers
             };
 
             return cardCounts
-                .SelectMany(kvp => Enumerable.Repeat(new TrainCard(kvp.Key), kvp.Value))
+                .SelectMany(kvp =>
+                    Enumerable.Range(0, kvp.Value)
+                        .Select(_ => new TrainCard(kvp.Key)))
                 .ToList();
         }
     }

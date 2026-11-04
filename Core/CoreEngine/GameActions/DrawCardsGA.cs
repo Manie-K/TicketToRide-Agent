@@ -1,5 +1,8 @@
 using CoreEngine.Cards;
 using CoreEngine.Game;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CoreEngine.GameActions
 {
@@ -10,11 +13,14 @@ namespace CoreEngine.GameActions
     /// cards or blindly from the top of the deck.
     ///
     /// Special rules:
-    ///   • Picking a face-up Locomotive counts as BOTH draws (turn ends after one pick).
-    ///   • A Locomotive drawn blindly counts as just one of the two draws.
-    ///   • If fewer than 2 total cards are available, take what is available.
-    ///   • After drawing a face-up card, the slot is immediately refilled.
-    ///   • If ≥3 of the 5 face-up cards are Locomotives, all 5 are discarded and redrawn.
+    /// - Picking a face-up Locomotive counts as BOTH draws (turn ends after one pick).
+    /// - A Locomotive drawn blindly counts as just one of the two draws.
+    /// - If fewer than 2 total cards are available, take what is available.
+    /// - After drawing a face-up card, the slot is immediately refilled.
+    /// - If ≥3 of the 5 face-up cards are Locomotives, all 5 are discarded and redrawn.
+    /// 
+    /// Architecture update:
+    /// - Converted to event-driven flow (SetPendingChoices) for RL agents.
     /// </summary>
     public class DrawCardsGA : GameAction
     {
@@ -29,38 +35,66 @@ namespace CoreEngine.GameActions
         public override bool CanExecute(Player currentPlayer)
         {
             var gm = GameManager.Instance;
-            bool marketHasCards  = gm.FaceUpCards.Any(c => c != null);
-            bool deckHasCards    = gm.TrainsDeck.DeckSize > 0 || gm.UsedCardsDeck.DeckSize > 0;
+            bool marketHasCards = gm.FaceUpCards.Any(c => c != null);
+            bool deckHasCards = gm.TrainsDeck.DeckSize > 0 || gm.UsedCardsDeck.DeckSize > 0;
             return marketHasCards || deckHasCards;
         }
 
         public override void Execute(Player currentPlayer)
         {
-            DrawOne(currentPlayer, isFirstDraw: true);
+            DrawStep(GameManager.Instance, currentPlayer, isFirstDraw: true);
         }
 
         // ─────────────────────────────────────────────────────────────────────────
-        private static void DrawOne(Player player, bool isFirstDraw)
+        private void DrawStep(GameManager gm, Player player, bool isFirstDraw)
         {
-            var gm = GameManager.Instance;
-
             // Build choice list: face-up slots + blind deck
             var choices = BuildDrawChoices(gm, allowFaceUpLoco: isFirstDraw);
 
-            if (choices.Count == 0) return;  // no cards available anywhere
+            // Edge case: Deck and market completely empty mid-turn
+            if (choices.Count == 0)
+            {
+                gm.EndTurn();
+                return;
+            }
 
-            int idx = gm.GetChoiceFromCurrentPlayer(choices);
-            var chosen = (DrawChoice)choices[idx].value!;
+            var callbacks = new List<Action>();
 
+            foreach (var choice in choices)
+            {
+                var chosen = (DrawChoice)choice.value!;
+
+                callbacks.Add(() =>
+                {
+                    HandleDrawResolution(gm, player, chosen, isFirstDraw);
+                });
+            }
+
+            // Suspend the game and wait for the agent/human to pick a card
+            gm.SetPendingChoices(choices, idx => callbacks[idx]());
+        }
+
+        private void HandleDrawResolution(GameManager gm, Player player, DrawChoice chosen, bool isFirstDraw)
+        {
             if (chosen.IsDeck)
             {
                 // Blind draw — locomotives drawn blind still allow a second pick
                 var card = gm.DrawFromMainDeck();
-                if (card != null) player.TrainsHand.Add(card);
+                if (card != null)
+                {
+                    player.TrainsHand.Add(card);
+                    Console.WriteLine($"  {player} drew a card blindly from the deck.");
+                }
 
-                // Only trigger a second draw when this IS the first draw
+                // Trigger a second draw if this was the first one and cards are still available
                 if (isFirstDraw && HasCardsAvailable(gm))
-                    DrawOne(player, isFirstDraw: false);
+                {
+                    DrawStep(gm, player, isFirstDraw: false);
+                }
+                else
+                {
+                    gm.EndTurn();
+                }
             }
             else
             {
@@ -68,11 +102,21 @@ namespace CoreEngine.GameActions
                 var card = gm.FaceUpCards[chosen.SlotIndex]!;
                 player.TrainsHand.Add(card);
                 gm.FaceUpCards[chosen.SlotIndex] = null;
+
+                Console.WriteLine($"  {player} drew a face-up {card.Color}.");
+
                 gm.RefillFaceUpCards();
 
-                // Face-up Locomotive = only card this turn (no second draw)
+                // Face-up Locomotive consumes both draws (ends turn).
+                // Otherwise, if it's the first draw, proceed to the second draw.
                 if (!card.IsLocomotive && isFirstDraw && HasCardsAvailable(gm))
-                    DrawOne(player, isFirstDraw: false);
+                {
+                    DrawStep(gm, player, isFirstDraw: false);
+                }
+                else
+                {
+                    gm.EndTurn();
+                }
             }
         }
 

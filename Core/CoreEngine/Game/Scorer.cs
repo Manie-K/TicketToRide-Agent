@@ -183,7 +183,6 @@ namespace CoreEngine.Game
 
             void Dfs(City current, int pathLength)
             {
-                bool extended = false;
                 for (int i = 0; i < routes.Count; i++)
                 {
                     if (usedEdges[i]) continue;
@@ -193,7 +192,6 @@ namespace CoreEngine.Game
                     else if (r.Destination == current) next = r.Origin;
                     if (next == null) continue;
 
-                    extended = true;
                     usedEdges[i] = true;
                     Dfs(next, pathLength + r.Length);
                     usedEdges[i] = false;

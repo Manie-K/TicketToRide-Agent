@@ -3,6 +3,7 @@ using CoreEngine.GameActions;
 using CoreEngine.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -37,7 +38,7 @@ namespace CoreEngine.Game
 
         // ── Mode / recorder ───────────────────────────────────────────────────────
         public GameMode GameMode { get; init; }
-        private readonly Recorder? recorder;
+        private readonly Recorder recorder;
 
         // ── State Machine properties for RL / External environment ────────────────
         public bool IsGameOver { get; private set; }
@@ -57,18 +58,20 @@ namespace CoreEngine.Game
         };
 
         // ── Constructor ──────────────────────────────────────────────────────────
-        public GameManager(List<Player> agents, GameMode gameMode = GameMode.Live, Random? rng = null)
+        public GameManager(List<Player> agents, Random rng, GameMode gameMode = GameMode.Live, string? recordingFullPath = null)
         {
+            Debug.Assert(rng != null, "We have to provide rng so that games can be recorded in deterministic way");
             //TODO: temp workaround, so agent can play multiple games while learning 
             //if (Instance != null)
                 //throw new InvalidOperationException("GameManager instance already exists.");
+            
             Instance = this;
 
             GameMode = gameMode;
-            Rng = rng ?? new Random();
+            Rng = rng;
 
-            if (GameMode != GameMode.Live)
-                recorder = new Recorder(Path.GetTempFileName(), GameMode);
+            recorder = new Recorder(recordingFullPath ?? Path.GetTempFileName(), GameMode);
+
 
             // Assign player colours in order
             var colours = Enum.GetValues<PlayerColor>();
@@ -96,11 +99,6 @@ namespace CoreEngine.Game
             IsGameOver = false;
             finalRound = false;
             finalRoundTurnsLeft = 0;
-
-            if (recorder?.Mode == RecorderMode.Record)
-            {
-                // TODO: record initial game state for full replay support
-            }
 
             // 1. Deal 4 train cards to each player
             foreach (var player in Players)
@@ -130,7 +128,7 @@ namespace CoreEngine.Game
             if (choiceIndex < 0 || choiceIndex >= CurrentChoices.Count)
                 throw new ArgumentOutOfRangeException(nameof(choiceIndex), "Invalid choice index.");
 
-            if (recorder?.Mode == RecorderMode.Record)
+            if (recorder.Mode == RecorderMode.Record)
                 recorder.RecordPlayerChoice(choiceIndex);
 
             // Fetch the current callback, clear the state, and execute it
@@ -139,6 +137,27 @@ namespace CoreEngine.Game
             CurrentChoices.Clear();
 
             resolver?.Invoke(choiceIndex);
+        }
+
+        public void ReplayStep()
+        {
+            Debug.Assert(recorder.Mode == RecorderMode.Replay, "Can be called only in replay mode gameplay.");
+            if (IsGameOver) return;
+
+            int choiceIndex = recorder!.ReadNextChoice();
+
+            if (choiceIndex < 0 || choiceIndex >= CurrentChoices.Count)
+                throw new ArgumentOutOfRangeException(nameof(choiceIndex), "Invalid choice index.");
+
+            // Is it fine as is?
+            {
+                // Fetch the current callback, clear the state, and execute it
+                var resolver = pendingChoiceResolver;
+                pendingChoiceResolver = null;
+                CurrentChoices.Clear();
+
+                resolver?.Invoke(choiceIndex);
+            }
         }
 
         // ── Event-Driven Game Loop ────────────────────────────────────────────────
@@ -164,6 +183,9 @@ namespace CoreEngine.Game
             // Check for final round conclusion
             if (finalRound && finalRoundTurnsLeft <= 0)
             {
+                if (recorder.Mode == RecorderMode.Record)
+                    recorder.SaveRecording();
+
                 IsGameOver = true;
                 CalculateFinalScores();
                 AnnounceWinner();

@@ -18,6 +18,7 @@ load("coreclr")
 import clr
 
 DLL_PATH = r"..\Core\CoreEngine\bin\Debug\net8.0\CoreEngine"
+RECORDING_PATH = r"..\recording.txt"
 clr.AddReference(DLL_PATH)
 
 from CoreEngine.Game import GameManager, GameMode, Player, PlayerChoiceDelegate  # type: ignore
@@ -55,7 +56,8 @@ class TicketToRideEnv(gym.Env):
         cs_agents.Add(Player(None, PlayerColor(1)))
         cs_agents.Add(Player(None, PlayerColor(2)))
 
-        self.gm = GameManager(cs_agents, GameMode.Live, DotNetRandom(current_seed))
+        # Here we can change it to Record/Replay
+        self.gm = GameManager(cs_agents, GameMode.Live, DotNetRandom(current_seed), RECORDING_PATH)
 
         self.gm.BeginGame()
 

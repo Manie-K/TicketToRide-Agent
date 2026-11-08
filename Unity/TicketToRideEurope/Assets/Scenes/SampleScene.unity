@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 8288426215254106694, guid: 2509ae29bc817bf4db0f601981831576, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (7)
@@ -3030,7 +3030,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 4164744761163438241, guid: 556b6113e2faee94885c3424ffc41acc, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (19)
@@ -4603,7 +4603,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 6660783624410144326, guid: a0281a2adfab32848af342050e00459d, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (16)
@@ -5540,7 +5540,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -6270953770400647376, guid: 3434f6d41321438458cb39c3a059cedb, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (13)
@@ -6324,7 +6324,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -1045133410153605164, guid: 4b8983ff362c79046a09d29961ff2ee3, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (25)
@@ -6385,7 +6385,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 1192843865154028290, guid: 395e51236e5878444a8d782db251cc5c, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (39)
@@ -9706,7 +9706,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 3207579745489812468, guid: 9df76318477d21c4289dadc21ae58cd1, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (35)
@@ -11279,7 +11279,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -2966200626249415253, guid: 567c58d627123434aabfe31fd54adbaa, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (10)
@@ -12114,7 +12114,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -8038976213705442086, guid: ee9b5e64865f9a44c85b965b4763090c, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (29)
@@ -13364,6 +13364,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1444622886}
     m_Modifications:
+    - target: {fileID: 2677733013957045744, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
+      propertyPath: city1
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677733013957045744, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
+      propertyPath: city2
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677733013957045744, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
+      propertyPath: points
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2812368736634735112, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -16577,7 +16589,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -30749221642623036, guid: 749c8a52f43f3d746838f08a50aefa56, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (30)
@@ -17015,7 +17027,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -6470460504253458178, guid: 0858949f72a45924697bfb9ec08e3e7d, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (2)
@@ -17423,7 +17435,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 7680820834086852892, guid: c8682c457fef43942a532a90290199bf, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (15)
@@ -21551,7 +21563,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 4349915267927364619, guid: 6b626a087434c634081248aa2f82a746, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (14)
@@ -23909,7 +23921,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 4113829005332862926, guid: e23290e1edcb6b54c96d2aedfb4459b7, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (8)
@@ -24084,6 +24096,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1444622886}
     m_Modifications:
+    - target: {fileID: 2677733013957045744, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
+      propertyPath: city1
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677733013957045744, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
+      propertyPath: city2
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677733013957045744, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
+      propertyPath: points
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2812368736634735112, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -24849,7 +24873,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 5272401415994956661, guid: ffd24b30caa2d2e41a0ebc0fb2ca0d89, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (31)
@@ -26088,7 +26112,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 5181654206020448988, guid: e778bf29f149c884aa8339775c484481, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (28)
@@ -26149,7 +26173,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -5622901713081898559, guid: 5185fa7233e1fcf4fbb7c1a208c0f2ee, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (26)
@@ -26793,7 +26817,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 3620510468529025383, guid: e48528ddcfcdbc14a836f19161b4a00e, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (33)
@@ -28531,7 +28555,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -1540426309290004842, guid: 3d1685bdf1e11d24db4c008be9deb11f, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (11)
@@ -30449,7 +30473,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 4130640169021434097, guid: 8c961fcf74d6ac34195233e09b8a6579, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (4)
@@ -32079,7 +32103,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -8712778243190278716, guid: f37439c1cbc6a1941813e742fe4cd340, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (36)
@@ -32140,7 +32164,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -2014771838305702419, guid: dd40bdbb25ca03b4bb4b6dd1fe77d566, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (37)
@@ -34014,7 +34038,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -3180619178420385107, guid: aa4b6c91c2d48e2479e92b30bddb57d3, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (38)
@@ -34624,7 +34648,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 7028616704906629411, guid: c566aeb36cc231949896059ca3bb57a6, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (6)
@@ -37268,7 +37292,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -164082725380277428, guid: a874aa196e82de84fa2f67f18debe098, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (34)
@@ -37466,7 +37490,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -4178046375966092550, guid: d65403dd42ab66e41a38c759ca02f136, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (3)
@@ -38924,7 +38948,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 8389134475083476877, guid: a1949808cc92b0e4b860ac9c6a3d488c, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (12)
@@ -39534,7 +39558,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -4093987921198194536, guid: 055ab9c07e3aaff459ef25f66ee1fc53, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (32)
@@ -43312,7 +43336,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 2720535173406242035, guid: 29b2b29b9b28b054f802be2186e8865b, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (22)
@@ -44031,7 +44055,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -7371509505491802261, guid: fe197172f8cb4624fa7854fd45f02622, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (21)
@@ -45339,7 +45363,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 2960402581040015946, guid: 9c7f96c203fd958448d951653daba7cd, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (17)
@@ -47431,7 +47455,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 6937817954938267909, guid: 58b5473137e94bb4cafe25e8b1c4cf09, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (1)
@@ -47670,7 +47694,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -855298285791758126, guid: fb8d725c05e3ba7468930bf9d5d2f1a3, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket
@@ -48316,7 +48340,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 3465286685962602723, guid: 2db40368431c03c4896c355d2e2cb9d9, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (5)
@@ -49365,7 +49389,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 6894999169920593895, guid: 019787b710451894984408195ab977bb, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (24)
@@ -49426,7 +49450,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -5099292496197868168, guid: 19f68cf6bc9fa5543a557258c84b7be6, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (9)
@@ -49487,7 +49511,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 8102358098348255977, guid: 45c448d97d677814692fa7d9d054ec58, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (23)
@@ -49705,7 +49729,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -5750353039905602045, guid: e7afca4d502ddd24f9ea5a6fce20524d, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (20)
@@ -52130,7 +52154,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: -796155573255488767, guid: 4c80949d78f8ecd4a97410a3995f8f2b, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (27)
@@ -54634,7 +54658,7 @@ PrefabInstance:
     - target: {fileID: 8037163031650987630, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -855298285791758126, guid: 02a80703f22883a41a43d4f0714e792f, type: 3}
+      objectReference: {fileID: 7157561037332017152, guid: 1ba87eff0e29a2644b81ccd671f56f89, type: 3}
     - target: {fileID: 8302120242743468588, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
       propertyPath: m_Name
       value: Ticket (18)
@@ -58787,8 +58811,8 @@ SceneRoots:
   - {fileID: 1612579321}
   - {fileID: 760451933}
   - {fileID: 1388955239}
-  - {fileID: 473984745}
   - {fileID: 1009322102}
   - {fileID: 28952052}
   - {fileID: 827390685}
   - {fileID: 574187486}
+  - {fileID: 473984745}

@@ -610,6 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -1220,6 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -1521,6 +1523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -2045,6 +2048,127 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66773489}
   m_CullTransparentMesh: 1
+--- !u!1 &78382366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 78382367}
+  - component: {fileID: 78382370}
+  - component: {fileID: 78382369}
+  - component: {fileID: 78382368}
+  m_Layer: 5
+  m_Name: CancelButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &78382367
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78382366}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 208215007}
+  m_Father: {fileID: 1284258919}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 110, y: 25}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &78382368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78382366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 78382369}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &78382369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78382366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &78382370
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78382366}
+  m_CullTransparentMesh: 1
 --- !u!1 &79282843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2555,6 +2679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -2972,6 +3097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -3957,6 +4083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -4983,6 +5110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -4995,6 +5123,143 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2812368736634735112, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
   m_PrefabInstance: {fileID: 1824093627}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &208215006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 208215007}
+  - component: {fileID: 208215009}
+  - component: {fileID: 208215008}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &208215007
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208215006}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 78382367}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &208215008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208215006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Cancel
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &208215009
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208215006}
+  m_CullTransparentMesh: 1
 --- !u!1 &211510331
 GameObject:
   m_ObjectHideFlags: 0
@@ -5345,6 +5610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -5924,6 +6190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -6261,6 +6528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -6901,6 +7169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -7198,6 +7467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -7718,6 +7988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -8435,6 +8706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -9009,6 +9281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -9491,6 +9764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -10146,6 +10420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -10643,6 +10918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -11221,6 +11497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -11639,6 +11916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -12056,6 +12334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -12458,6 +12737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -13237,6 +13517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -13598,6 +13879,7 @@ RectTransform:
   - {fileID: 2043777973}
   - {fileID: 408270033}
   - {fileID: 682652315}
+  - {fileID: 1284258919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13975,6 +14257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -13987,6 +14270,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2812368736634735112, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
   m_PrefabInstance: {fileID: 562319523}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &466025998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466025999}
+  - component: {fileID: 466026000}
+  m_Layer: 5
+  m_Name: CardsContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &466025999
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466025998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1284258919}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: 500, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &466026000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466025998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &470911189
 GameObject:
   m_ObjectHideFlags: 0
@@ -14127,6 +14472,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHandUIController
   cardTemplatePrefab: {fileID: 1587386448372451397, guid: 2579dd1993fc0db449bd85df34d8643a, type: 3}
+  locomotiveSprite: {fileID: -1353802831456069579, guid: cad9324bdf0fe9747b6cb174389bb6f9, type: 3}
+  routePopupPanel: {fileID: 1284258918}
+  closePopupButton: {fileID: 78382368}
+  confirmPopupButton: {fileID: 1822361912}
+  tunnelCardsContainer: {fileID: 1943645784}
+  spentCardsContainer: {fileID: 466025999}
+  popupInstructionText: {fileID: 686577810}
 --- !u!1 &473984744
 GameObject:
   m_ObjectHideFlags: 0
@@ -15100,6 +15452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -15880,6 +16233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -16201,6 +16555,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &550068634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1587386448372451397, guid: 2579dd1993fc0db449bd85df34d8643a, type: 3}
+  m_PrefabInstance: {fileID: 2986487530932599553}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &551002720
 GameObject:
   m_ObjectHideFlags: 0
@@ -16531,6 +16890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -16538,6 +16898,81 @@ MonoBehaviour:
   - {fileID: 6113416949157219914, guid: 6c3b3c1f7d0db1b48b77beb23e13df1b, type: 3}
   - {fileID: 8330577332410454172, guid: dc8ba3663b173274385669a207638262, type: 3}
   - {fileID: -3386296248915071743, guid: 8f00b9e0c19c1ec4d9a0705bf9f09c05, type: 3}
+--- !u!1 &556581203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 556581204}
+  - component: {fileID: 556581206}
+  - component: {fileID: 556581205}
+  m_Layer: 5
+  m_Name: MapBlocker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &556581204
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556581203}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1284258919}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 80}
+  m_SizeDelta: {x: 1200, y: 700}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &556581205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556581203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &556581206
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556581203}
+  m_CullTransparentMesh: 1
 --- !u!1001 &557604876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16969,6 +17404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -17819,6 +18255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -18236,6 +18673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -19000,6 +19438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -19377,6 +19816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -19831,6 +20271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -20285,6 +20726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -20464,6 +20906,143 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &686577808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 686577809}
+  - component: {fileID: 686577811}
+  - component: {fileID: 686577810}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &686577809
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686577808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1284258919}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -35}
+  m_SizeDelta: {x: 700, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &686577810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686577808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Choose cards to build a route
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &686577811
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686577808}
+  m_CullTransparentMesh: 1
 --- !u!1 &694282086
 GameObject:
   m_ObjectHideFlags: 0
@@ -20794,6 +21373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -21211,6 +21791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -22076,6 +22657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -22598,6 +23180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -23412,6 +23995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -24815,6 +25399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -25393,6 +25978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -26054,6 +26640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -26597,6 +27184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -27177,6 +27765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -27474,6 +28063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -28935,6 +29525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -29352,6 +29943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -29925,6 +30517,143 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1082505638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1082505639}
+  - component: {fileID: 1082505641}
+  - component: {fileID: 1082505640}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1082505639
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082505638}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1822361911}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1082505640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082505638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Confirm
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1082505641
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082505638}
+  m_CullTransparentMesh: 1
 --- !u!1 &1082853323
 GameObject:
   m_ObjectHideFlags: 0
@@ -30415,6 +31144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -30853,6 +31583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -31342,6 +32073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -32621,6 +33353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -33723,6 +34456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -34300,6 +35034,87 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278910116}
   m_CullTransparentMesh: 1
+--- !u!1 &1284258918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1284258919}
+  - component: {fileID: 1284258921}
+  - component: {fileID: 1284258920}
+  m_Layer: 5
+  m_Name: RouteBuildPopup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1284258919
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284258918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 556581204}
+  - {fileID: 686577809}
+  - {fileID: 1822361911}
+  - {fileID: 78382367}
+  - {fileID: 466025999}
+  - {fileID: 1943645784}
+  m_Father: {fileID: 445855348}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 40, y: 0}
+  m_SizeDelta: {x: 700, y: 350}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1284258920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284258918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.83137256}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1284258921
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284258918}
+  m_CullTransparentMesh: 1
 --- !u!1 &1291268174
 GameObject:
   m_ObjectHideFlags: 0
@@ -34590,6 +35405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -34948,6 +35764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -35250,6 +36067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -36099,6 +36917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -36830,6 +37649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -37127,6 +37947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -38008,6 +38829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -38385,6 +39207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -38762,6 +39585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -39500,6 +40324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -39858,6 +40683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -41010,6 +41836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -41387,6 +42214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -41684,6 +42512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -42183,6 +43012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -42544,6 +43374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -42841,6 +43672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -43278,6 +44110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -43827,6 +44660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -44445,6 +45279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -44782,6 +45617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -45148,6 +45984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -45747,6 +46584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -46084,6 +46922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -46411,6 +47250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -47096,6 +47936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -47397,6 +48238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -48282,6 +49124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -48817,6 +49660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -49331,6 +50175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -49399,6 +50244,127 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0b4323159f509343902ae70f7245aeb, type: 3}
+--- !u!1 &1822361910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1822361911}
+  - component: {fileID: 1822361914}
+  - component: {fileID: 1822361913}
+  - component: {fileID: 1822361912}
+  m_Layer: 5
+  m_Name: ConfirmButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1822361911
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822361910}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1082505639}
+  m_Father: {fileID: 1284258919}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -110, y: 25}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1822361912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822361910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1822361913}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1822361913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822361910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1822361914
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822361910}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1824093627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50029,6 +50995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -50386,6 +51353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -51302,6 +52270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -51719,6 +52688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -51726,6 +52696,68 @@ MonoBehaviour:
   - {fileID: 6113416949157219914, guid: 6c3b3c1f7d0db1b48b77beb23e13df1b, type: 3}
   - {fileID: 8330577332410454172, guid: dc8ba3663b173274385669a207638262, type: 3}
   - {fileID: -3386296248915071743, guid: 8f00b9e0c19c1ec4d9a0705bf9f09c05, type: 3}
+--- !u!1 &1943645783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1943645784}
+  - component: {fileID: 1943645785}
+  m_Layer: 5
+  m_Name: TunelCardsContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1943645784
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943645783}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1284258919}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 260}
+  m_SizeDelta: {x: 500, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1943645785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943645783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1963572390
 GameObject:
   m_ObjectHideFlags: 0
@@ -52096,6 +53128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -52773,6 +53806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -53130,6 +54164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -53427,6 +54462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -54020,6 +55056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -54442,6 +55479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -55450,6 +56488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -55948,6 +56987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -56334,6 +57374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -56706,6 +57747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 1
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -57063,6 +58105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -57400,6 +58443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -57777,6 +58821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -58154,6 +59199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -58551,6 +59597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bb27a469487f74c8071bba293d3d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RouteClickDetector
+  isTunnel: 0
   wagonRenderer: {fileID: 0}
   playerWagonSprites:
   - {fileID: 169506600761842800, guid: e8b44f9b94e1a1f4aba004c9066f826b, type: 3}
@@ -58792,13 +59839,71 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1587386448372451397, guid: 2579dd1993fc0db449bd85df34d8643a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2986487530932599557}
   m_SourcePrefab: {fileID: 100100000, guid: 2579dd1993fc0db449bd85df34d8643a, type: 3}
 --- !u!224 &2986487530932599554 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4061310431501409960, guid: 2579dd1993fc0db449bd85df34d8643a, type: 3}
   m_PrefabInstance: {fileID: 2986487530932599553}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2986487530932599555 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4438949592206874535, guid: 2579dd1993fc0db449bd85df34d8643a, type: 3}
+  m_PrefabInstance: {fileID: 2986487530932599553}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550068634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &2986487530932599557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550068634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2986487530932599555}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: dd637e834fb89d8499034c38e6b1c270
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cardTemplatePrefab: {instanceID: 0}
+  - nextCardSprite: {instanceID: 0}
+  - tableCardButton: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,1300 @@
+fileFormatVersion: 2
+guid: d587b3cb19000df46b7dda8d9bcba5bd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -905042444464389548
+    second: Cities_0
+  - first:
+      213: -7083413999669431329
+    second: Cities_1
+  - first:
+      213: -42529656320633689
+    second: Cities_2
+  - first:
+      213: -6014466243012744771
+    second: Cities_3
+  - first:
+      213: 1484304988036351532
+    second: Cities_4
+  - first:
+      213: -623789407594149212
+    second: Cities_5
+  - first:
+      213: 7465634825989579501
+    second: Cities_6
+  - first:
+      213: 6805169847531263569
+    second: Cities_7
+  - first:
+      213: -5836914174670033145
+    second: Cities_8
+  - first:
+      213: -4597770973291332874
+    second: Cities_9
+  - first:
+      213: -7809181703565408758
+    second: Cities_10
+  - first:
+      213: -3829391173799052008
+    second: Cities_11
+  - first:
+      213: -5729249021357618158
+    second: Cities_12
+  - first:
+      213: -4313141952498133410
+    second: Cities_13
+  - first:
+      213: 1499849866875129476
+    second: Cities_14
+  - first:
+      213: 2657755782479878166
+    second: Cities_15
+  - first:
+      213: -7712680615337912746
+    second: Cities_16
+  - first:
+      213: 6613207381927087496
+    second: Cities_17
+  - first:
+      213: 4493619516202597523
+    second: Cities_18
+  - first:
+      213: 1491094646250764173
+    second: Cities_19
+  - first:
+      213: 7059913947216315443
+    second: Cities_20
+  - first:
+      213: -5218887312046866870
+    second: Cities_21
+  - first:
+      213: 4450051887032462539
+    second: Cities_22
+  - first:
+      213: -7877689947794747510
+    second: Cities_23
+  - first:
+      213: 6921119271836091443
+    second: Cities_24
+  - first:
+      213: -1689362561560959958
+    second: Cities_25
+  - first:
+      213: -4946628573165844312
+    second: Cities_26
+  - first:
+      213: 2052254793769806173
+    second: Cities_27
+  - first:
+      213: -6096847270529889133
+    second: Cities_28
+  - first:
+      213: -8099767506039321583
+    second: Cities_29
+  - first:
+      213: 2582271972266366361
+    second: Cities_30
+  - first:
+      213: -8607326513457169002
+    second: Cities_31
+  - first:
+      213: 6546978792628894024
+    second: Cities_32
+  - first:
+      213: 7627490083823821717
+    second: Cities_33
+  - first:
+      213: -696329912842514576
+    second: Cities_34
+  - first:
+      213: 561392313061365269
+    second: Cities_35
+  - first:
+      213: 8236182330515033668
+    second: Cities_36
+  - first:
+      213: 5988804410490763128
+    second: Cities_37
+  - first:
+      213: 6645224728508756498
+    second: Cities_38
+  - first:
+      213: -8519974114084552810
+    second: Cities_39
+  - first:
+      213: 8813607552554537382
+    second: Cities_40
+  - first:
+      213: -8463488500698029178
+    second: Cities_41
+  - first:
+      213: -1573479198893238991
+    second: Cities_42
+  - first:
+      213: -7626866081784282420
+    second: Cities_43
+  - first:
+      213: -8348496382386396380
+    second: Cities_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cities_0
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 885
+        width: 104
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4528c0f11b4a073f0800000000000000
+      internalID: -905042444464389548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_1
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 904
+        width: 107
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd3bca03f78a2bd90800000000000000
+      internalID: -7083413999669431329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_2
+      rect:
+        serializedVersion: 2
+        x: 1230
+        y: 878
+        width: 109
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a4d69eb087e86ff0800000000000000
+      internalID: -42529656320633689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_3
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 797
+        width: 109
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db9a5a761d2588ca0800000000000000
+      internalID: -6014466243012744771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_4
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 822
+        width: 49
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c264f3eb58f499410800000000000000
+      internalID: 1484304988036351532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 674
+        width: 114
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aa03b9b6dad757f0800000000000000
+      internalID: -623789407594149212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_6
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 698
+        width: 74
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de2e4e1d1534b9760800000000000000
+      internalID: 7465634825989579501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_7
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 698
+        width: 78
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 156dc46cbe1d07e50800000000000000
+      internalID: 6805169847531263569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_8
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 645
+        width: 74
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70fa952cb7d1ffea0800000000000000
+      internalID: -5836914174670033145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_9
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 655
+        width: 67
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fa3e5ae8af6130c0800000000000000
+      internalID: -4597770973291332874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_10
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 638
+        width: 61
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a06018c8d9630a390800000000000000
+      internalID: -7809181703565408758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_11
+      rect:
+        serializedVersion: 2
+        x: 1155
+        y: 634
+        width: 99
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81df0b334054bdac0800000000000000
+      internalID: -3829391173799052008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_12
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 598
+        width: 103
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21c8934be5e9d70b0800000000000000
+      internalID: -5729249021357618158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_13
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 607
+        width: 65
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5693870f34a424c0800000000000000
+      internalID: -4313141952498133410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_14
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 615
+        width: 102
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48e4283e18980d410800000000000000
+      internalID: 1499849866875129476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_15
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 569
+        width: 48
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61814728dce32e420800000000000000
+      internalID: 2657755782479878166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_16
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 497
+        width: 70
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6561eb808dd07f490800000000000000
+      internalID: -7712680615337912746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_17
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 505
+        width: 105
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88d41c95315d6cb50800000000000000
+      internalID: 6613207381927087496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_18
+      rect:
+        serializedVersion: 2
+        x: 1270
+        y: 491
+        width: 86
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39cb40b442b8c5e30800000000000000
+      internalID: 4493619516202597523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_19
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 478
+        width: 67
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d87734c3eae61b410800000000000000
+      internalID: 1491094646250764173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_20
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 479
+        width: 86
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33487a8745ad9f160800000000000000
+      internalID: 7059913947216315443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_21
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 460
+        width: 52
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4e37aaf3a9c297b0800000000000000
+      internalID: -5218887312046866870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_22
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 436
+        width: 59
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcc60a62d92c1cd30800000000000000
+      internalID: 4450051887032462539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_23
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 421
+        width: 96
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8f4703fab2dca290800000000000000
+      internalID: -7877689947794747510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_24
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 398
+        width: 69
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33486edde41cc0060800000000000000
+      internalID: 6921119271836091443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_25
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 376
+        width: 72
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a24a05d63bd2e88e0800000000000000
+      internalID: -1689362561560959958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_26
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 315
+        width: 80
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a807a4658b0a5bb0800000000000000
+      internalID: -4946628573165844312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_27
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 296
+        width: 78
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d59ed339cd21b7c10800000000000000
+      internalID: 2052254793769806173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_28
+      rect:
+        serializedVersion: 2
+        x: 1084
+        y: 291
+        width: 178
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39c814eb5b5a36ba0800000000000000
+      internalID: -6096847270529889133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_29
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 262
+        width: 94
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11c464f1e58d79f80800000000000000
+      internalID: -8099767506039321583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_30
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 247
+        width: 95
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99552646da216d320800000000000000
+      internalID: 2582271972266366361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_31
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 248
+        width: 58
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69d759bb322ac8880800000000000000
+      internalID: -8607326513457169002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_32
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 216
+        width: 101
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84939a6468a8bda50800000000000000
+      internalID: 6546978792628894024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_33
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 175
+        width: 56
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 593222ea1d94ad960800000000000000
+      internalID: 7627490083823821717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_34
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 175
+        width: 82
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07f0b8232a32656f0800000000000000
+      internalID: -696329912842514576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_35
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 179
+        width: 56
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51658a795577ac700800000000000000
+      internalID: 561392313061365269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_36
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 114
+        width: 76
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44e82b3413ccc4270800000000000000
+      internalID: 8236182330515033668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_37
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 134
+        width: 149
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 877389c91e18c1350800000000000000
+      internalID: 5988804410490763128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_38
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 79
+        width: 68
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 212f763cea4983c50800000000000000
+      internalID: 6645224728508756498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_39
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 85
+        width: 106
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69f777a1fa8f2c980800000000000000
+      internalID: -8519974114084552810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_40
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 78
+        width: 70
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a196bf5f59305a70800000000000000
+      internalID: 8813607552554537382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_41
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 73
+        width: 86
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6836a43dc06ab8a80800000000000000
+      internalID: -8463488500698029178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_42
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 39
+        width: 59
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13590885101e92ae0800000000000000
+      internalID: -1573479198893238991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_43
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 31
+        width: 134
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc2c5cd15bde72690800000000000000
+      internalID: -7626866081784282420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cities_44
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 8
+        width: 86
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 423a93fb5ce242c80800000000000000
+      internalID: -8348496382386396380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Cities_0: -905042444464389548
+      Cities_1: -7083413999669431329
+      Cities_10: -7809181703565408758
+      Cities_11: -3829391173799052008
+      Cities_12: -5729249021357618158
+      Cities_13: -4313141952498133410
+      Cities_14: 1499849866875129476
+      Cities_15: 2657755782479878166
+      Cities_16: -7712680615337912746
+      Cities_17: 6613207381927087496
+      Cities_18: 4493619516202597523
+      Cities_19: 1491094646250764173
+      Cities_2: -42529656320633689
+      Cities_20: 7059913947216315443
+      Cities_21: -5218887312046866870
+      Cities_22: 4450051887032462539
+      Cities_23: -7877689947794747510
+      Cities_24: 6921119271836091443
+      Cities_25: -1689362561560959958
+      Cities_26: -4946628573165844312
+      Cities_27: 2052254793769806173
+      Cities_28: -6096847270529889133
+      Cities_29: -8099767506039321583
+      Cities_3: -6014466243012744771
+      Cities_30: 2582271972266366361
+      Cities_31: -8607326513457169002
+      Cities_32: 6546978792628894024
+      Cities_33: 7627490083823821717
+      Cities_34: -696329912842514576
+      Cities_35: 561392313061365269
+      Cities_36: 8236182330515033668
+      Cities_37: 5988804410490763128
+      Cities_38: 6645224728508756498
+      Cities_39: -8519974114084552810
+      Cities_4: 1484304988036351532
+      Cities_40: 8813607552554537382
+      Cities_41: -8463488500698029178
+      Cities_42: -1573479198893238991
+      Cities_43: -7626866081784282420
+      Cities_44: -8348496382386396380
+      Cities_5: -623789407594149212
+      Cities_6: 7465634825989579501
+      Cities_7: 6805169847531263569
+      Cities_8: -5836914174670033145
+      Cities_9: -4597770973291332874
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

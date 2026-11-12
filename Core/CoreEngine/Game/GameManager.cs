@@ -1,6 +1,11 @@
 using CoreEngine.Cards;
 using CoreEngine.GameActions;
 using CoreEngine.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 
 namespace CoreEngine.Game
 {
@@ -17,14 +22,14 @@ namespace CoreEngine.Game
         // ── Decks ────────────────────────────────────────────────────────────────
         public CardDeck<TicketCard> LongTicketsDeck { get; private set; } = null!;
         public CardDeck<TicketCard> TicketsDeck { get; private set; } = null!;
-        public CardDeck<TrainCard>  TrainsDeck    { get; private set; } = null!;
-        public CardDeck<TrainCard>  UsedCardsDeck { get; private set; } = null!;
+        public CardDeck<TrainCard> TrainsDeck { get; private set; } = null!;
+        public CardDeck<TrainCard> UsedCardsDeck { get; private set; } = null!;
 
         // ── Face-up train card market (5 slots; null = empty slot) ───────────────
         public List<TrainCard?> FaceUpCards { get; private set; } = new(5) { null, null, null, null, null };
 
         // ── Board ────────────────────────────────────────────────────────────────
-        public List<City>  Cities { get; private set; } = new();
+        public List<City> Cities { get; private set; } = new();
         public List<Route> Routes { get; private set; } = new();
 
         // ── Players ──────────────────────────────────────────────────────────────
@@ -33,7 +38,15 @@ namespace CoreEngine.Game
 
         // ── Mode / recorder ───────────────────────────────────────────────────────
         public GameMode GameMode { get; init; }
-        private readonly Recorder? recorder;
+        private readonly Recorder recorder;
+
+        // ── State Machine properties for RL / External environment ────────────────
+        public bool IsGameOver { get; private set; }
+        public List<PlayerChoice> CurrentChoices { get; private set; } = new();
+        private Action<int>? pendingChoiceResolver;
+
+        private bool finalRound = false;
+        private int finalRoundTurnsLeft = 0;
 
         // ── Actions ───────────────────────────────────────────────────────────────
         private readonly GameAction[] allGameActions =
@@ -45,22 +58,20 @@ namespace CoreEngine.Game
         };
 
         // ── Constructor ──────────────────────────────────────────────────────────
-        /// <param name="agents">Players in turn order.</param>
-        /// <param name="gameMode">Live / Record / Replay.</param>
-        /// <param name="rng">
-        ///   Optional seeded <see cref="Random"/>. Pass a fixed seed for deterministic replays.
-        /// </param>
-        public GameManager(List<Player> agents, GameMode gameMode = GameMode.Live, Random? rng = null)
+        public GameManager(List<Player> agents, Random rng, GameMode gameMode = GameMode.Live, string? recordingFullPath = null)
         {
-            if (Instance != null)
-                throw new InvalidOperationException("GameManager instance already exists.");
+            Debug.Assert(rng != null, "We have to provide rng so that games can be recorded in deterministic way");
+            //TODO: temp workaround, so agent can play multiple games while learning 
+            //if (Instance != null)
+                //throw new InvalidOperationException("GameManager instance already exists.");
+            
             Instance = this;
 
             GameMode = gameMode;
-            Rng = rng ?? new Random();
+            Rng = rng;
 
-            if (GameMode != GameMode.Live)
-                recorder = new Recorder(Path.GetTempFileName(), GameMode);
+            recorder = new Recorder(recordingFullPath ?? Path.GetTempFileName(), GameMode);
+
 
             // Assign player colours in order
             var colours = Enum.GetValues<PlayerColor>();
@@ -77,28 +88,18 @@ namespace CoreEngine.Game
 
             // Build decks — share the same Rng for reproducibility
             LongTicketsDeck = new CardDeck<TicketCard>(MapDefinition.BuildLongRouteTickets(), Rng);
-            TicketsDeck     = new CardDeck<TicketCard>(MapDefinition.BuildRegularTickets(), Rng);
-            TrainsDeck      = new CardDeck<TrainCard>(DecksInitialization.GetInitialTrainCards(), Rng);
-            UsedCardsDeck   = new CardDeck<TrainCard>(new List<TrainCard>(), Rng);
+            TicketsDeck = new CardDeck<TicketCard>(MapDefinition.BuildRegularTickets(), Rng);
+            TrainsDeck = new CardDeck<TrainCard>(DecksInitialization.GetInitialTrainCards(), Rng);
+            UsedCardsDeck = new CardDeck<TrainCard>(new List<TrainCard>(), Rng);
         }
 
-        // ── Game entry point ──────────────────────────────────────────────────────
-        public void Start()
+        // ── Gym Environment Entry Point (Replaces Start() and Setup()) ───────────
+        public void BeginGame()
         {
-            if (recorder?.Mode == RecorderMode.Record)
-            {
-                // TODO: record initial game state for full replay support
-            }
+            IsGameOver = false;
+            finalRound = false;
+            finalRoundTurnsLeft = 0;
 
-            Setup();
-            RunGameLoop();
-            CalculateFinalScores();
-            AnnounceWinner();
-        }
-
-        // ── Setup phase ───────────────────────────────────────────────────────────
-        private void Setup()
-        {
             // 1. Deal 4 train cards to each player
             foreach (var player in Players)
                 for (int i = 0; i < 4; i++)
@@ -107,70 +108,131 @@ namespace CoreEngine.Game
             // 2. Open the face-up market
             RefillFaceUpCards();
 
-            // 3. Deal 1 long-route ticket to each player (kept automatically; excess removed)
+            // 3. Deal 1 long-route ticket to each player (kept automatically)
             foreach (var player in Players)
             {
                 var longTicket = LongTicketsDeck.DrawCard();
                 if (longTicket != null)
                     player.TicketsHand.Add(longTicket);
             }
-            // Remaining long-route tickets are removed from play (don't put back)
 
-            // 4. Deal 3 regular tickets to each player; player keeps >= 1
-            //    (they already have 1 long route → total kept >= 2 as per rules)
-            foreach (var player in Players)
+            // 4. Start the async/callback-based setup for regular tickets
+            RunSetupTicketSelection(0);
+        }
+
+        // ── Gym Environment Step ──────────────────────────────────────────────────
+        public void Step(int choiceIndex)
+        {
+            if (IsGameOver) return;
+
+            if (choiceIndex < 0 || choiceIndex >= CurrentChoices.Count)
+                throw new ArgumentOutOfRangeException(nameof(choiceIndex), "Invalid choice index.");
+
+            if (recorder.Mode == RecorderMode.Record)
+                recorder.RecordPlayerChoice(choiceIndex);
+
+            // Fetch the current callback, clear the state, and execute it
+            var resolver = pendingChoiceResolver;
+            pendingChoiceResolver = null;
+            CurrentChoices.Clear();
+
+            resolver?.Invoke(choiceIndex);
+        }
+
+        public void ReplayStep()
+        {
+            Debug.Assert(recorder.Mode == RecorderMode.Replay, "Can be called only in replay mode gameplay.");
+            if (IsGameOver) return;
+
+            int choiceIndex = recorder!.ReadNextChoice();
+
+            if (choiceIndex < 0 || choiceIndex >= CurrentChoices.Count)
+                throw new ArgumentOutOfRangeException(nameof(choiceIndex), "Invalid choice index.");
+
+            // Is it fine as is?
             {
-                var setupPlayer = CurrentPlayer; // save context
-                CurrentPlayer = player;
-                DealTicketsToPlayer(player, count: 3, minKeep: 1, returnToBottom: false);
-                CurrentPlayer = setupPlayer;
+                // Fetch the current callback, clear the state, and execute it
+                var resolver = pendingChoiceResolver;
+                pendingChoiceResolver = null;
+                CurrentChoices.Clear();
+
+                resolver?.Invoke(choiceIndex);
             }
         }
 
-        // ── Game loop ─────────────────────────────────────────────────────────────
-        private void RunGameLoop()
+        // ── Event-Driven Game Loop ────────────────────────────────────────────────
+        private void RunSetupTicketSelection(int playerIndex)
         {
-            bool finalRound = false;
-            int finalRoundTurnsLeft = 0;
-
-            while (true)
+            // If all players have selected their initial tickets, start the real game
+            if (playerIndex >= Players.Count)
             {
-                // Final-round countdown
-                if (finalRound)
-                {
-                    if (finalRoundTurnsLeft <= 0) break;
-                    finalRoundTurnsLeft--;
-                }
-
-                // Execute current player's turn
-                ExecuteTurn();
-
-                // Check end-game trigger (trains <= 2 at the END of a turn)
-                if (!finalRound && CurrentPlayer.TrainsRemaining <= 2)
-                {
-                    finalRound = true;
-                    // Every player (including the trigger player) gets one final turn.
-                    // The trigger player just went, so remaining turns = Players.Count.
-                    finalRoundTurnsLeft = Players.Count;
-                    Console.WriteLine($"\n*** {CurrentPlayer} has {CurrentPlayer.TrainsRemaining} trains left — final round begins! ***\n");
-                }
-
-                // Advance to next player
-                int nextIdx = (Players.IndexOf(CurrentPlayer) + 1) % Players.Count;
-                CurrentPlayer = Players[nextIdx];
+                CurrentPlayer = Players[0];
+                StartTurn();
+                return;
             }
+
+            CurrentPlayer = Players[playerIndex];
+            DealTicketsToPlayer(CurrentPlayer, count: 3, minKeep: 1, returnToBottom: false, onDone: () =>
+            {
+                RunSetupTicketSelection(playerIndex + 1); // Move to the next player
+            });
         }
 
-        private void ExecuteTurn()
+        private void StartTurn()
         {
+            // Check for final round conclusion
+            if (finalRound && finalRoundTurnsLeft <= 0)
+            {
+                if (recorder.Mode == RecorderMode.Record)
+                    recorder.SaveRecording();
+
+                IsGameOver = true;
+                CalculateFinalScores();
+                AnnounceWinner();
+                return;
+            }
+
             List<GameAction> available = GetAvailableActions();
+            var choices = available.Select(a => new PlayerChoice(a, a.Name)).ToList();
 
-            var choices = available
-                .Select(a => new PlayerChoice(a, a.Name))
-                .ToList();
+            SetPendingChoices(choices, idx =>
+            {
+                available[idx].Execute(CurrentPlayer);
 
-            int idx = GetChoiceFromCurrentPlayer(choices);
-            available[idx].Execute(CurrentPlayer);
+                // If the executed action was synchronous and didn't suspend the game 
+                // for sub-choices (like PaymentOptions), end the turn immediately.
+                if (pendingChoiceResolver == null)
+                {
+                    EndTurn();
+                }
+            });
+        }
+
+        public void EndTurn()
+        {
+            // Check end-game trigger (trains <= 2 at the END of a turn)
+            if (!finalRound && CurrentPlayer.TrainsRemaining <= 2)
+            {
+                finalRound = true;
+                finalRoundTurnsLeft = Players.Count;
+                Console.WriteLine($"\n*** {CurrentPlayer} has {CurrentPlayer.TrainsRemaining} trains left — final round begins! ***\n");
+            }
+
+            if (finalRound)
+                finalRoundTurnsLeft--;
+
+            // Advance to next player
+            int nextIdx = (Players.IndexOf(CurrentPlayer) + 1) % Players.Count;
+            CurrentPlayer = Players[nextIdx];
+
+            StartTurn();
+        }
+
+        // ── Choice Suspension Mechanism ───────────────────────────────────────────
+        public void SetPendingChoices(List<PlayerChoice> choices, Action<int> onResolved)
+        {
+            CurrentChoices = choices;
+            pendingChoiceResolver = onResolved;
         }
 
         private List<GameAction> GetAvailableActions()
@@ -180,35 +242,13 @@ namespace CoreEngine.Game
                 .ToList();
 
             if (available.Count == 0)
-                throw new InvalidOperationException(
-                    $"No actions available for {CurrentPlayer} — corrupted game state.");
+                throw new InvalidOperationException($"No actions available for {CurrentPlayer} — corrupted game state.");
 
             return available;
         }
 
-        // ── Player interaction ────────────────────────────────────────────────────
-        public int GetChoiceFromCurrentPlayer(List<PlayerChoice> choices)
-        {
-            if (recorder?.Mode == RecorderMode.Replay)
-                return recorder.GetNextPlayerChoice();
-
-            int idx = CurrentPlayer.InputFunc?.Invoke(choices) ?? -1;
-
-            if (recorder?.Mode == RecorderMode.Record)
-                recorder.RecordPlayerChoice(idx);
-
-            return idx;
-        }
-
-        // ── Ticket drawing helper (shared by DrawTicketsGA and Setup) ─────────────
-        /// <summary>
-        /// Draws up to <paramref name="count"/> tickets from <see cref="TicketsDeck"/>,
-        /// presents keep/discard choices to the current player (enforcing
-        /// <paramref name="minKeep"/>), then either adds kept tickets to the player's hand
-        /// or returns discarded ones to the deck bottom (if <paramref name="returnToBottom"/>)
-        /// or removes them from play (setup).
-        /// </summary>
-        public void DealTicketsToPlayer(Player player, int count = 3, int minKeep = 1, bool returnToBottom = true)
+        // ── Flattened Ticket drawing helper (RL-friendly combinatorics) ───────────
+        public void DealTicketsToPlayer(Player player, int count = 3, int minKeep = 1, bool returnToBottom = true, Action? onDone = null)
         {
             var drawn = new List<TicketCard>();
             for (int i = 0; i < count; i++)
@@ -217,54 +257,50 @@ namespace CoreEngine.Game
                 if (t != null) drawn.Add(t);
             }
 
-            if (drawn.Count == 0) return;
-
-            var kept = new List<TicketCard>();
-            var discarded = new List<TicketCard>();
-
-            for (int i = 0; i < drawn.Count; i++)
+            // If deck is empty, immediately proceed
+            if (drawn.Count == 0)
             {
-                var ticket = drawn[i];
-                int mustKeepRemaining = minKeep - kept.Count;
-                int remainingTickets  = drawn.Count - i;
-
-                // Hide discard if player MUST keep this ticket to meet the minimum
-                bool mustKeepThis = mustKeepRemaining >= remainingTickets;
-
-                List<PlayerChoice> opts;
-                if (mustKeepThis)
-                {
-                    // Only one option: keep
-                    opts = new List<PlayerChoice>
-                    {
-                        new(ticket, $"KEEP  {ticket.Origin.Name} → {ticket.Destination.Name} ({ticket.Points} pts)")
-                    };
-                }
-                else
-                {
-                    opts = new List<PlayerChoice>
-                    {
-                        new(ticket, $"Keep    {ticket.Origin.Name} → {ticket.Destination.Name} ({ticket.Points} pts)"),
-                        new(ticket, $"Discard {ticket.Origin.Name} → {ticket.Destination.Name} ({ticket.Points} pts)"),
-                    };
-                }
-
-                int choice = GetChoiceFromCurrentPlayer(opts);
-                bool keeping = mustKeepThis || choice == 0;
-
-                if (keeping)
-                    kept.Add(ticket);
-                else
-                    discarded.Add(ticket);
+                if (onDone != null) onDone();
+                else EndTurn();
+                return;
             }
 
-            foreach (var t in kept)
-                player.TicketsHand.Add(t);
+            var choices = new List<PlayerChoice>();
+            var choiceCallbacks = new List<Action>();
+            int totalCombos = 1 << drawn.Count; // 2^count combinations
 
-            if (returnToBottom)
-                foreach (var t in discarded)
-                    TicketsDeck.AddOnBottom(t);
-            // else: discarded tickets are simply removed from play (setup)
+            // Generate all valid keep/discard combinations
+            for (int mask = 1; mask < totalCombos; mask++)
+            {
+                var kept = new List<TicketCard>();
+                var discarded = new List<TicketCard>();
+
+                for (int i = 0; i < drawn.Count; i++)
+                {
+                    if ((mask & (1 << i)) != 0) kept.Add(drawn[i]);
+                    else discarded.Add(drawn[i]);
+                }
+
+                if (kept.Count < minKeep) continue;
+
+                string desc = "Keep tickets: " + string.Join(" & ", kept.Select(t => $"{t.Origin.Name}-{t.Destination.Name}"));
+                choices.Add(new PlayerChoice(kept, desc));
+
+                choiceCallbacks.Add(() =>
+                {
+                    foreach (var t in kept)
+                        player.TicketsHand.Add(t);
+
+                    if (returnToBottom)
+                        foreach (var t in discarded)
+                            TicketsDeck.AddOnBottom(t);
+
+                    if (onDone != null) onDone();
+                    else EndTurn();
+                });
+            }
+
+            SetPendingChoices(choices, idx => choiceCallbacks[idx]());
         }
 
         // ── Card draw helpers ─────────────────────────────────────────────────────
@@ -300,7 +336,7 @@ namespace CoreEngine.Game
             EnforceLocomotiveRule();
         }
 
-        private void EnforceLocomotiveRule()
+        public void EnforceLocomotiveRule()
         {
             while (FaceUpCards.Count(c => c?.IsLocomotive == true) >= 3)
             {
@@ -337,29 +373,49 @@ namespace CoreEngine.Game
             }).ToList();
         }
 
+        public readonly struct CurrentScoreBreakdown
+        {
+            public int RoutePoints { get; init; }
+            public int TicketNet { get; init; }
+            public int StationBonus { get; init; }
+            public int Total => RoutePoints + TicketNet + StationBonus;
+        }
+
+        public CurrentScoreBreakdown GetCurrentScoreBreakdown(Player player)
+        {
+            return new CurrentScoreBreakdown
+            {
+                RoutePoints  = player.Score, // claimed routes only, until final scoring
+                TicketNet    = Scorer.ScoreTickets(player, Players, Routes),
+                StationBonus = player.StationsRemaining * 4,
+            };
+        }
+
+        /// <summary>
+        /// Route points + ticket net + unused stations.
+        /// Does not include European Express. Does not mutate player.Score.
+        /// Equivalent to "if the game ended now, except longest-path bonus".
+        /// </summary>
+        public int CalculateCurrentScore(Player player) => GetCurrentScoreBreakdown(player).Total;
+
         // ── End-game scoring ──────────────────────────────────────────────────────
         private void CalculateFinalScores()
         {
             Console.WriteLine("\n═══ FINAL SCORING ═══\n");
 
-            // Station bonus: +4 per unused station
             foreach (var player in Players)
             {
-                int stationBonus = player.StationsRemaining * 4;
-                player.Score += stationBonus;
-                if (stationBonus > 0)
-                    Console.WriteLine($"  {player}: +{stationBonus} pts (station bonus, {player.StationsRemaining} unused)");
+                var b = GetCurrentScoreBreakdown(player);
+
+                Console.WriteLine($"  {player}");
+                Console.WriteLine($"    routes:         {b.RoutePoints,4}");
+                Console.WriteLine($"    tickets:        {(b.TicketNet >= 0 ? "+" : "")}{b.TicketNet}");
+                Console.WriteLine($"    unused stations:{b.StationBonus,4}  ({player.StationsRemaining} × 4)");
+                Console.WriteLine($"    subtotal:       {b.Total,4}  (excludes European Express)");
+
+                player.Score = b.Total;
             }
 
-            // Destination tickets
-            foreach (var player in Players)
-            {
-                int ticketNet = Scorer.ScoreTickets(player, Players, Routes);
-                player.Score += ticketNet;
-                Console.WriteLine($"  {player}: ticket net = {(ticketNet >= 0 ? "+" : "")}{ticketNet}");
-            }
-
-            // Longest continuous path bonus (10 pts)
             var longestPaths = Scorer.FindLongestPaths(Players);
             int maxPath = longestPaths.Values.Max();
             if (maxPath > 0)
@@ -384,5 +440,101 @@ namespace CoreEngine.Game
             var winner = Scorer.DetermineWinner(Players, Routes);
             Console.WriteLine($"\n🏆 Winner: {winner}");
         }
+
+        public float[] GetGameStateVector(Player observer)
+        {
+            var obs = new List<float>();
+
+            // ── 1. AGENT RESOURCES (Normalized to 0.0 - 1.0) ────────────────────
+            obs.Add(observer.TrainsRemaining / 45f);
+            obs.Add(observer.StationsRemaining / 3f);
+            obs.Add(observer.Score / 150f); // 150 is an arbitrary high score in the game
+
+            // Cards in hand (count each of the 9 colors including Locomotives, divided by max 110 cards)
+            var handMap = Utils.GetCardsColorMap(observer.TrainsHand);
+            foreach (TrainColor c in Enum.GetValues<TrainColor>())
+            {
+                if (c == TrainColor.Wild) continue; // Wild is the color of gray routes, not cards
+
+                int count = c == TrainColor.Locomotive
+                    ? observer.TrainsHand.Count(tc => tc.IsLocomotive)
+                    : observer.TrainsHand.Count(tc => tc.Color == c && !tc.IsLocomotive);
+
+                obs.Add(count / 110f);
+            }
+
+            // ── 2. OWNED TICKETS (One-Hot Encoding) ────────────────────────────
+            // Array of zeros and ones for each of the 46 tickets in the game (1 = owned, 0 = not owned)
+            foreach (var ticketDef in MapDefinition.AllTickets)
+            {
+                bool hasTicket = observer.TicketsHand.Any(t =>
+                    t.Origin.Name == ticketDef.Origin.Name &&
+                    t.Destination.Name == ticketDef.Destination.Name);
+
+                obs.Add(hasTicket ? 1f : 0f);
+            }
+
+            // ── 3. BOARD STATE (Routes) ───────────────────────────────────────────
+            // Each route occupies 3 indices: (Is it empty?, Is it mine?, Is it enemy's?)
+            foreach (var route in MapDefinition.Routes)
+            {
+                if (!route.IsClaimed)
+                {
+                    obs.Add(1f); obs.Add(0f); obs.Add(0f); // Empty
+                }
+                else if (route.ClaimedBy == observer)
+                {
+                    obs.Add(0f); obs.Add(1f); obs.Add(0f); // Mine
+                }
+                else
+                {
+                    obs.Add(0f); obs.Add(0f); obs.Add(1f); // Enemy
+                }
+            }
+
+            // ── 4. CARD MARKET (Face-Up Cards) ─────────────────────────────────────
+            var marketCounts = new Dictionary<TrainColor, int>();
+            foreach (var card in FaceUpCards.Where(c => c != null))
+            {
+                marketCounts[card!.Color] = marketCounts.GetValueOrDefault(card.Color) + 1;
+            }
+
+            foreach (TrainColor c in Enum.GetValues<TrainColor>())
+            {
+                if (c == TrainColor.Wild) continue;
+                int count = c == TrainColor.Locomotive
+                    ? FaceUpCards.Count(tc => tc?.IsLocomotive == true)
+                    : marketCounts.GetValueOrDefault(c, 0);
+
+                obs.Add(count / 5f);
+            }
+
+            // ── 5. OPPONENTS (Summary info) ──────────────────────────────
+            int maxOpponents = 4; // For games up to 5 players (4 opponents)
+            int opponentsAdded = 0;
+
+            foreach (var p in Players)
+            {
+                if (p == observer) continue; // Skip ourselves
+
+                obs.Add(p.TrainsRemaining / 45f);
+                obs.Add(p.StationsRemaining / 3f);
+                obs.Add(p.TrainsHand.Count / 110f); // Card count (we don't know the colors, it's a secret!)
+                obs.Add(p.TicketsHand.Count / 46f); // Ticket count
+                obs.Add(p.Score / 150f);
+
+                opponentsAdded++;
+            }
+
+            // Pad with zeros if playing with fewer than 5 players
+            while (opponentsAdded < maxOpponents)
+            {
+                obs.AddRange(new float[] { 0f, 0f, 0f, 0f, 0f });
+                opponentsAdded++;
+            }
+
+            return obs.ToArray();
+        }
+
     }
 }

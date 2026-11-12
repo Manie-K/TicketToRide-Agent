@@ -57,10 +57,10 @@ namespace CoreEngine.Game
         /// Adds a double-route (two parallel routes with linked Sibling references).
         private static void AddDouble(string c1, string c2, int len,
                                       TrainColor color1, TrainColor color2,
-                                      bool tunnel1 = false, bool tunnel2 = false)
+                                      bool tunnel1 = false, bool tunnel2 = false, int ferryLocos1 = 0, int ferryLocos2 = 0)
         {
-            var r1 = Add(c1, c2, len, color1, tunnel1);
-            var r2 = Add(c1, c2, len, color2, tunnel2);
+            var r1 = Add(c1, c2, len, color1, tunnel1, ferryLocos1);
+            var r2 = Add(c1, c2, len, color2, tunnel2, ferryLocos2);
             r1.Sibling = r2;
             r2.Sibling = r1;
         }
@@ -76,115 +76,115 @@ namespace CoreEngine.Game
         private static void BuildRoutes()
         {
             // ── British Isles ───────────────────────────────────────────────────────
-            Add("Edinburgh", "London",    4, TrainColor.Orange);
-            AddDouble("London", "Dieppe", 2, TrainColor.Wild, TrainColor.Wild);
+            AddDouble("Edinburgh", "London", 4, TrainColor.Orange, TrainColor.Black);
+            AddDouble("London", "Dieppe",    2, TrainColor.Wild, TrainColor.Wild, ferryLocos1: 1, ferryLocos2: 1);
+            Add("London", "Amsterdam",       2, TrainColor.Wild, ferryLocos: 2);
 
-            // ── France / Atlantic ──────────────────────────────────────────────────
-            Add("Dieppe",   "Paris",      1, TrainColor.Wild);
-            Add("Dieppe",   "Brest",      2, TrainColor.Wild);
-            Add("Brest",    "Paris",      3, TrainColor.Black);
-            Add("Paris",    "Bordeaux",   5, TrainColor.Wild);
-            Add("Paris",    "Marseille",  4, TrainColor.Wild);
-            Add("Paris",    "Bruxelles",  2, TrainColor.Yellow);
-            Add("Paris",    "Frankfurt",  3, TrainColor.Orange);
+            // ── France ──────────────────────────────────────────────────
+            Add("Dieppe",       "Paris",            1, TrainColor.Pink);
+            Add("Dieppe",   "Brest",            2, TrainColor.Orange);
+            Add("Dieppe", "Bruxelles",          2, TrainColor.Green);
+            Add("Brest",    "Paris",            3, TrainColor.Black);
+            Add("Paris",    "Marseille",        4, TrainColor.Wild);
+            AddDouble("Paris","Bruxelles",  2, TrainColor.Yellow, TrainColor.Red);
+            AddDouble("Paris","Frankfurt",  3, TrainColor.Orange, TrainColor.White);
 
             // ── Iberian Peninsula ──────────────────────────────────────────────────
-            Add("Lisboa",   "Cádiz",      2, TrainColor.Wild);
+            Add("Lisboa",   "Cádiz",      2, TrainColor.Blue);
             Add("Lisboa",   "Madrid",     3, TrainColor.Pink);
-            Add("Cádiz",    "Madrid",     3, TrainColor.Yellow);
+            Add("Cádiz",    "Madrid",     3, TrainColor.Orange);
             Add("Madrid",   "Barcelona",  2, TrainColor.Yellow);
-            // Confirmed tunnel double-route (rulebook page 5)
             AddDouble("Madrid", "Pamplona", 3, TrainColor.Black, TrainColor.White, tunnel1: true, tunnel2: true);
-            Add("Pamplona", "Barcelona",  2, TrainColor.Wild);
-            Add("Pamplona", "Bordeaux",   4, TrainColor.Green);
+            Add("Pamplona", "Barcelona",  2, TrainColor.Wild, tunnel: true);
             Add("Barcelona","Marseille",  4, TrainColor.Wild);
+            Add("Pamplona", "Marseille", 4, TrainColor.Red);
+            Add("Pamplona", "Brest", 4, TrainColor.Pink);
+            AddDouble("Pamplona", "Paris", 4, TrainColor.Blue, TrainColor.Green);
 
-            // ── Benelux / Germany ──────────────────────────────────────────────────
-            Add("Amsterdam","Bruxelles",  1, TrainColor.Wild);
+            // ── Benelux ──────────────────────────────────────────────────
+            Add("Amsterdam","Bruxelles",  1, TrainColor.Black);
             Add("Amsterdam","Essen",      3, TrainColor.Yellow);
             Add("Amsterdam","Frankfurt",  2, TrainColor.White);
             Add("Bruxelles","Frankfurt",  2, TrainColor.Blue);
             Add("Essen",    "Frankfurt",  2, TrainColor.Green);
             Add("Essen",    "Berlin",     2, TrainColor.Blue);
-            Add("Essen",    "Kobenhavn",  3, TrainColor.Blue,  ferryLocos: 1);  // North Sea ferry
-            Add("Frankfurt","Berlin",     3, TrainColor.Black);
+            AddDouble("Essen",    "København",  3, TrainColor.Wild, TrainColor.Wild, ferryLocos1: 1, ferryLocos2: 1);
+            AddDouble("Frankfurt","Berlin",     3, TrainColor.Black, TrainColor.Red);
             Add("Frankfurt","München",    2, TrainColor.Pink);
-            Add("Frankfurt","Praha",      3, TrainColor.Wild);
-            Add("Berlin",   "Praha",      2, TrainColor.Wild);
             Add("Berlin",   "Danzig",     4, TrainColor.Wild);
-            Add("Berlin",   "Warszawa",   5, TrainColor.White);
+            AddDouble("Berlin",   "Warszawa",   4, TrainColor.Pink, TrainColor.Yellow);
+            Add("Berlin", "Wien", 3, TrainColor.Green);
+            Add("München", "Wien", 3, TrainColor.Orange);
+            Add("München", "Zürich", 2, TrainColor.Yellow, tunnel: true);
+            Add("München", "Venezia", 2, TrainColor.Blue, tunnel: true);
 
             // ── Scandinavia ────────────────────────────────────────────────────────
-            Add("Bergen",   "Kobenhavn",  4, TrainColor.Wild);
-            Add("Bergen",   "Stockholm",  3, TrainColor.Wild);
-            Add("Kobenhavn","Stockholm",  3, TrainColor.White);
-            Add("Stockholm","Petrograd",  8, TrainColor.Wild);   // longest route (21 pts)
-            Add("Stockholm","Danzig",     3, TrainColor.Wild);
+            AddDouble("København","Stockholm",  3, TrainColor.White, TrainColor.Yellow);
+            Add("Stockholm","Petrograd",  8, TrainColor.Wild, tunnel: true);
 
-            // ── Eastern Europe / Baltic ───────────────────────────────────────────
+            // ── Eastern Europe ───────────────────────────────────────────
             Add("Danzig",   "Riga",       3, TrainColor.Black);
-            AddDouble("Danzig", "Warszawa", 2, TrainColor.Wild, TrainColor.Wild);
-            Add("Riga",     "Petrograd",  4, TrainColor.Blue);
+            Add("Danzig", "Warszawa", 2, TrainColor.Wild);
+            Add("Riga",     "Petrograd",  4, TrainColor.Wild);
             Add("Riga",     "Wilno",      4, TrainColor.Green);
-            Add("Petrograd","Moskva",     4, TrainColor.Wild);
+            Add("Petrograd","Moskva",     4, TrainColor.White);
             Add("Petrograd","Wilno",      4, TrainColor.Blue);
             Add("Wilno",    "Warszawa",   3, TrainColor.Red);
-            Add("Wilno",    "Smolensk",   3, TrainColor.Wild);
+            Add("Wilno",    "Smolensk",   3, TrainColor.Yellow);
             Add("Wilno",    "Kyiv",       2, TrainColor.Wild);
             Add("Warszawa", "Kyiv",       4, TrainColor.Wild);
             Add("Moskva",   "Smolensk",   2, TrainColor.Orange);
-            Add("Moskva",   "Kharkov",    4, TrainColor.Green);
+            Add("Moskva",   "Kharkov",    4, TrainColor.Wild);
             Add("Smolensk", "Kyiv",       3, TrainColor.Red);
-            Add("Kharkov",  "Kyiv",       4, TrainColor.Red);
+            Add("Kharkov",  "Kyiv",       4, TrainColor.Wild);
             Add("Kharkov",  "Rostov",     2, TrainColor.Green);
             Add("Kyiv",     "Bucuresti",  4, TrainColor.Wild);
             Add("Rostov",   "Sochi",      2, TrainColor.Wild);
             Add("Rostov",   "Sevastopol", 4, TrainColor.Wild);
-            Add("Sochi",    "Erzurum",    3, TrainColor.Black, tunnel: true);
+            Add("Sochi",    "Erzurum",    3, TrainColor.Red, tunnel: true);
+            Add("Sochi", "Sevastopol", 2, TrainColor.Wild, ferryLocos: 1);
+            Add("Kyiv", "Budapest", 6, TrainColor.Wild, tunnel: true);
+            Add("Warszawa", "Wien", 4, TrainColor.Blue);
+            AddDouble("Wien", "Budapest", 1, TrainColor.Red, TrainColor.White);
 
-            // ── Central Europe ─────────────────────────────────────────────────────
-            Add("München",  "Wien",       3, TrainColor.Blue);
-            Add("München",  "Zürich",     2, TrainColor.Yellow);
-            Add("München",  "Venezia",    2, TrainColor.Blue);
-            Add("Praha",    "Wien",       1, TrainColor.Wild);
-            Add("Praha",    "München",    4, TrainColor.Wild);  // alternate: via Zürich
-            AddDouble("Wien", "Budapest", 1, TrainColor.Red,   TrainColor.Wild);
-
-            // ── Alpine / Mediterranean ─────────────────────────────────────────────
-            Add("Zürich",   "Frankfurt",  3, TrainColor.Green);
-            Add("Zürich",   "Marseille",  2, TrainColor.Wild);
-            Add("Zürich",   "Venezia",    2, TrainColor.Green, tunnel: true);
-            Add("Marseille","Venezia",    4, TrainColor.Wild);
+            // ── Alpine ─────────────────────────────────────────────
+            Add("Zürich",   "Marseille",  2, TrainColor.Pink, tunnel: true);
+            Add("Zürich", "Venezia", 2, TrainColor.Green, tunnel: true);
+            Add("Zürich", "Paris", 2, TrainColor.Wild, tunnel: true);
 
             // ── Balkans ───────────────────────────────────────────────────────────
             Add("Budapest", "Sarajevo",   3, TrainColor.Pink);
-            Add("Budapest", "Bucuresti",  4, TrainColor.Blue);
-            Add("Sarajevo", "Sofia",      2, TrainColor.Wild);
-            Add("Sarajevo", "Athina",     4, TrainColor.Green, ferryLocos: 1);  // Adriatic ferry
-            Add("Sarajevo", "Bucuresti",  3, TrainColor.Wild);
-            Add("Bucuresti","Sofia",      2, TrainColor.Wild);
-            Add("Bucuresti","Sevastopol", 4, TrainColor.White, ferryLocos: 2);  // Black Sea ferry
+            Add("Budapest", "Bucuresti",  4, TrainColor.Wild, tunnel: true);
+            Add("Sarajevo", "Sofia",      2, TrainColor.Wild, tunnel: true);
+            Add("Sarajevo", "Athina",     4, TrainColor.Green);
+            Add("Bucuresti","Sofia",      2, TrainColor.Wild, tunnel: true);
+            Add("Bucuresti","Sevastopol", 4, TrainColor.White);
             Add("Sofia",    "Constantinople", 3, TrainColor.Blue);
             Add("Sofia",    "Athina",     3, TrainColor.Pink);
-            Add("Sevastopol","Constantinople", 4, TrainColor.Wild, ferryLocos: 2); // Black Sea ferry
+            Add("Sevastopol","Constantinople", 4, TrainColor.Wild, ferryLocos: 2);
+            Add("Bucuresti", "Constantinople", 3, TrainColor.Yellow);
+            Add("Zágráb", "Venezia", 2, TrainColor.Wild);
+            Add("Zágráb", "Wien", 2, TrainColor.Wild);
+            Add("Zágráb", "Budapest", 2, TrainColor.Orange);
+            Add("Zágráb", "Sarajevo", 3, TrainColor.Red);
+
 
             // ── Italy ─────────────────────────────────────────────────────────────
-            Add("Venezia",  "Roma",       2, TrainColor.Wild);
-            Add("Venezia",  "Sarajevo",   3, TrainColor.Wild);  // Adriatic coast
-            Add("Roma",     "Brindisi",   2, TrainColor.Wild);
+            Add("Venezia",  "Roma",       2, TrainColor.Black);
+            Add("Roma",     "Brindisi",   2, TrainColor.White);
             Add("Roma",     "Palermo",    4, TrainColor.Wild,   ferryLocos: 1);
             Add("Brindisi", "Athina",     4, TrainColor.Wild,   ferryLocos: 1);
-            Add("Brindisi", "Palermo",    1, TrainColor.Wild);
+            Add("Brindisi", "Palermo",    3, TrainColor.Wild, ferryLocos: 1);
+            Add("Roma", "Marseille", 4, TrainColor.Wild, tunnel: true);
 
-            // ── Aegean / Anatolia ─────────────────────────────────────────────────
-            Add("Athina",   "Smyrna",     2, TrainColor.Wild,   ferryLocos: 1); // Aegean ferry
-            Add("Constantinople","Smyrna", 2, TrainColor.Wild);
-            Add("Constantinople","Angora", 2, TrainColor.Wild);
-            Add("Smyrna",   "Angora",     3, TrainColor.Wild);
-            // Confirmed ferry (rulebook page 5): 4 cards any color + 2 locos = length 6
+            // ── Anatolia ─────────────────────────────────────────────────
+            Add("Athina",   "Smyrna",     2, TrainColor.Wild,   ferryLocos: 1);
+            Add("Constantinople","Smyrna", 2, TrainColor.Wild, tunnel: true);
+            Add("Constantinople","Angora", 2, TrainColor.Wild, tunnel: true);
+            Add("Smyrna",   "Angora",     3, TrainColor.Orange, tunnel: true);
             Add("Smyrna",   "Palermo",    6, TrainColor.Wild,   ferryLocos: 2);
-            Add("Angora",   "Erzurum",    3, TrainColor.Black,  tunnel: true);
-            Add("Angora",   "Kharkov",    5, TrainColor.White);
+            Add("Angora",   "Erzurum",    3, TrainColor.Black);
+            Add("Erzurum", "Sevastopol", 4, TrainColor.Wild, ferryLocos: 2);
         }
 
         // ── Validation ───────────────────────────────────────────────────────────
@@ -223,7 +223,7 @@ namespace CoreEngine.Game
         public static List<TicketCard> BuildLongRouteTickets() => new()
         {
             new TicketCard(C("Edinburgh"),  C("Athina"),    21),
-            new TicketCard(C("Kobenhavn"),  C("Erzurum"),   21),
+            new TicketCard(C("København"),  C("Erzurum"),   21),
             new TicketCard(C("Cádiz"),      C("Stockholm"), 21),
             new TicketCard(C("Brest"),      C("Petrograd"), 20),
             new TicketCard(C("Lisboa"),     C("Danzig"),    20),
@@ -274,5 +274,9 @@ namespace CoreEngine.Game
             new TicketCard(C("Athina"),       C("Angora"),         5),
             new TicketCard(C("Budapest"),     C("Sofia"),          5)
         };
+
+        public static readonly IReadOnlyList<TicketCard> AllTickets =
+            BuildLongRouteTickets().Concat(BuildRegularTickets()).ToList();
+
     }
 }

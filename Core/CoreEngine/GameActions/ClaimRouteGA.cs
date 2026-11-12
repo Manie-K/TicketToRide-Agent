@@ -1,6 +1,9 @@
 using CoreEngine.Cards;
 using CoreEngine.Game;
 using CoreEngine.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CoreEngine.GameActions
 {
@@ -8,11 +11,15 @@ namespace CoreEngine.GameActions
     /// Claim Route action.
     ///
     /// Covers all route variants:
-    ///   • Plain colored and gray (Wild) routes
-    ///   • Ferry routes (mandatory Locomotive minimum)
-    ///   • Tunnel routes (reveal-3 extra-card mechanic, optional back-out)
-    ///   • Double-route enforcement (player cannot claim both siblings;
+    /// - Plain colored and gray (Wild) routes
+    /// - Ferry routes (mandatory Locomotive minimum)
+    /// - Tunnel routes (reveal-3 extra-card mechanic, optional back-out)
+    /// - Double-route enforcement (player cannot claim both siblings;
     ///     in 2-3 player games the second route closes when the first is claimed)
+    ///     
+    /// Architecture update: 
+    /// - Converted to event-driven (State Machine) flow using SetPendingChoices.
+    /// - Cascades up to 3 times for Tunnels: Route Selection -> Base Payment -> Extra Payment.
     /// </summary>
     public class ClaimRouteGA : GameAction
     {
@@ -32,61 +39,88 @@ namespace CoreEngine.GameActions
             var gm = GameManager.Instance;
             var claimable = gm.GetClaimableRoutes(currentPlayer);
 
+            if (claimable.Count == 0)
+            {
+                gm.EndTurn();
+                return;
+            }
+
             // ── Step 1: choose a route ────────────────────────────────────────────
-            var routeChoices = claimable
-                .Select(r => new PlayerChoice(r, RouteLabel(r)))
-                .ToList();
+            var routeChoices = new List<PlayerChoice>();
+            var routeCallbacks = new List<Action>();
 
-            int routeIdx = gm.GetChoiceFromCurrentPlayer(routeChoices);
-            Route chosen = claimable[routeIdx];
+            foreach (var route in claimable)
+            {
+                routeChoices.Add(new PlayerChoice(route, RouteLabel(route)));
 
+                routeCallbacks.Add(() =>
+                {
+                    HandleBasePaymentSelection(gm, currentPlayer, route);
+                });
+            }
+
+            // Suspend game and wait for route selection
+            gm.SetPendingChoices(routeChoices, idx => routeCallbacks[idx]());
+        }
+
+        private void HandleBasePaymentSelection(GameManager gm, Player player, Route chosenRoute)
+        {
             // ── Step 2: choose a payment combo ────────────────────────────────────
             var spends = PaymentPlanner.EnumerateSpends(
-                currentPlayer.TrainsHand,
-                chosen.Length,
-                chosen.Color,
-                chosen.LocomotivesNeeded);
+                player.TrainsHand,
+                chosenRoute.Length,
+                chosenRoute.Color,
+                chosenRoute.LocomotivesNeeded);
 
-            SpendOption spend;
+            if (spends.Count == 0)
+                throw new InvalidOperationException("Route was claimable but no valid payment options found.");
+
             if (spends.Count == 1)
             {
-                spend = spends[0];  // only one way to pay — no choice needed
+                // Auto-resolve base payment if there's only one option
+                ProcessPaymentAndCheckTunnel(gm, player, chosenRoute, spends[0]);
             }
             else
             {
-                var spendChoices = spends
-                    .Select(s => new PlayerChoice(s, s.Description))
-                    .ToList();
-                int spendIdx = gm.GetChoiceFromCurrentPlayer(spendChoices);
-                spend = spends[spendIdx];
-            }
+                var spendChoices = new List<PlayerChoice>();
+                var spendCallbacks = new List<Action>();
 
-            // ── Step 3: tunnel resolution (if applicable) ─────────────────────────
-            if (chosen.IsTunnel)
-            {
-                bool claimed = TryClaimTunnel(currentPlayer, chosen, spend, gm);
-                if (!claimed)
+                foreach (var spend in spends)
                 {
-                    Console.WriteLine($"  {currentPlayer} backed out of the tunnel. Turn forfeited.");
-                    return;  // turn consumed, no cards spent
+                    spendChoices.Add(new PlayerChoice(spend, spend.Description));
+
+                    spendCallbacks.Add(() =>
+                    {
+                        ProcessPaymentAndCheckTunnel(gm, player, chosenRoute, spend);
+                    });
                 }
-            }
-            else
-            {
-                // Normal claim
-                currentPlayer.CommitSpend(spend);
-                chosen.Claim(currentPlayer);
-                Console.WriteLine($"  {currentPlayer} claims {chosen.Origin.Name}–{chosen.Destination.Name} " +
-                                  $"({chosen.Length} cars) for {Route.RoutePoints(chosen.Length)} pts.");
+
+                // Suspend game and wait for base payment selection
+                gm.SetPendingChoices(spendChoices, idx => spendCallbacks[idx]());
             }
         }
 
-        // ── Tunnel mechanic ───────────────────────────────────────────────────────
-        /// <summary>
-        /// Returns true if the tunnel was successfully claimed (cards committed + route claimed).
-        /// Returns false if the player backed out or could not afford the extra cards.
-        /// </summary>
-        private static bool TryClaimTunnel(Player player, Route route, SpendOption baseSpend, GameManager gm)
+        private void ProcessPaymentAndCheckTunnel(GameManager gm, Player player, Route chosenRoute, SpendOption baseSpend)
+        {
+            // ── Step 3: tunnel resolution (if applicable) ─────────────────────────
+            if (chosenRoute.IsTunnel)
+            {
+                HandleTunnelReveal(gm, player, chosenRoute, baseSpend);
+            }
+            else
+            {
+                // Normal claim (Not a tunnel)
+                player.CommitSpend(baseSpend);
+                chosenRoute.Claim(player);
+                Console.WriteLine($"  {player} claims {chosenRoute.Origin.Name}–{chosenRoute.Destination.Name} " +
+                                  $"({chosenRoute.Length} cars) for {Route.RoutePoints(chosenRoute.Length)} pts.");
+
+                gm.EndTurn();
+            }
+        }
+
+        // ── Tunnel mechanic (Async) ───────────────────────────────────────────────
+        private void HandleTunnelReveal(GameManager gm, Player player, Route route, SpendOption baseSpend)
         {
             // Reveal top 3 cards from the draw deck
             var revealed = new List<TrainCard>();
@@ -117,7 +151,8 @@ namespace CoreEngine.GameActions
                 route.Claim(player);
                 Console.WriteLine($"  {player} claims tunnel {route.Origin.Name}–{route.Destination.Name} " +
                                   $"for {Route.RoutePoints(route.Length)} pts.");
-                return true;
+                gm.EndTurn();
+                return;
             }
 
             // Compute remaining hand after base spend (for checking affordability)
@@ -132,41 +167,50 @@ namespace CoreEngine.GameActions
 
             if (extraSpends.Count == 0)
             {
-                // Cannot afford — auto back-out (consistent for replay)
+                // Cannot afford — auto back-out (turn forfeited, no cards lost)
                 Console.WriteLine($"  {player} cannot afford {extra} extra card(s). Back out.");
-                return false;
+                gm.EndTurn();
+                return;
             }
 
-            // Offer extra-spend options + back-out
-            const int BackOutIndex = 0;
-            var extraChoices = new List<PlayerChoice>
+            // Step 4: Offer extra-spend options + back-out
+            var extraChoices = new List<PlayerChoice>();
+            var extraCallbacks = new List<Action>();
+
+            // Option 0: Back out
+            extraChoices.Add(new PlayerChoice(null, $"Back out (forfeit turn) — don't pay {extra} extra card(s)"));
+            extraCallbacks.Add(() =>
             {
-                new(null, $"Back out (forfeit turn) — cannot afford {extra} extra card(s)? No — back out anyway.")
-            };
-            foreach (var es in extraSpends)
-                extraChoices.Add(new PlayerChoice(es, $"Pay extra: {es.Description}"));
+                Console.WriteLine($"  {player} backed out of the tunnel. Turn forfeited.");
+                gm.EndTurn();
+            });
 
-            int choice = gm.GetChoiceFromCurrentPlayer(extraChoices);
+            // Options 1+: Pay extra
+            foreach (var extraSpend in extraSpends)
+            {
+                extraChoices.Add(new PlayerChoice(extraSpend, $"Pay extra: {extraSpend.Description}"));
 
-            if (choice == BackOutIndex)
-                return false;  // player chose to back out
+                extraCallbacks.Add(() =>
+                {
+                    // Commit both payments and claim
+                    player.CommitSpend(baseSpend);
+                    player.CommitSpend(extraSpend);
+                    route.Claim(player);
+                    Console.WriteLine($"  {player} claims tunnel {route.Origin.Name}–{route.Destination.Name} " +
+                                      $"(+{extra} extra) for {Route.RoutePoints(route.Length)} pts.");
+                    gm.EndTurn();
+                });
+            }
 
-            var extraSpend = extraSpends[choice - 1];  // -1 because index 0 = back-out
-
-            // Commit both payments and claim
-            player.CommitSpend(baseSpend);
-            player.CommitSpend(extraSpend);
-            route.Claim(player);
-            Console.WriteLine($"  {player} claims tunnel {route.Origin.Name}–{route.Destination.Name} " +
-                              $"(+{extra} extra) for {Route.RoutePoints(route.Length)} pts.");
-            return true;
+            // Suspend game for the final tunnel payment decision
+            gm.SetPendingChoices(extraChoices, idx => extraCallbacks[idx]());
         }
 
         /// <summary>Removes the cards described by <paramref name="spend"/> from a copy of the hand (non-destructive simulation).</summary>
         private static void RemoveSpendFromHand(List<TrainCard> hand, SpendOption spend)
         {
             int colorRemaining = spend.ColorCards;
-            int locoRemaining  = spend.Locomotives;
+            int locoRemaining = spend.Locomotives;
 
             for (int i = hand.Count - 1; i >= 0 && (colorRemaining > 0 || locoRemaining > 0); i--)
             {
@@ -186,11 +230,11 @@ namespace CoreEngine.GameActions
 
         private static string RouteLabel(Route r)
         {
-            string color  = r.Color == TrainColor.Wild ? "Gray(any)" : r.Color.ToString();
+            string color = r.Color == TrainColor.Wild ? "Gray(any)" : r.Color.ToString();
             string extras = "";
-            if (r.IsTunnel)          extras += " [TUNNEL]";
+            if (r.IsTunnel) extras += " [TUNNEL]";
             if (r.LocomotivesNeeded > 0) extras += $" [FERRY: {r.LocomotivesNeeded} loco]";
-            if (r.Sibling != null)   extras += " [double]";
+            if (r.Sibling != null) extras += " [double]";
             return $"{r.Origin.Name} → {r.Destination.Name}  ({r.Length} cars, {color}{extras})  +{Route.RoutePoints(r.Length)} pts";
         }
     }

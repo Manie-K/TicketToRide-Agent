@@ -1,3 +1,5 @@
+using System.Runtime.Serialization;
+
 namespace CoreEngine.Cards
 {
     public class CardDeck<T> where T : Card
@@ -22,6 +24,11 @@ namespace CoreEngine.Cards
             this.rng = rng ?? new Random();
             cards = new Queue<T>();
             Init(initialCards);
+        }
+
+        public void Serialize()
+        {
+
         }
 
         public void Init(List<T> initialCards)

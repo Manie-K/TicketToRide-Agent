@@ -10,6 +10,7 @@ namespace CoreEngine.Game
 {
     public class Connection
     {
+        // These must be the same in Unity project! Possible to define them in file somewhere
         private const string host = "127.0.0.1";
         private const int port = 5000;
 

@@ -137,6 +137,11 @@ namespace CoreEngine.Game
             CurrentChoices.Clear();
 
             resolver?.Invoke(choiceIndex);
+
+            Connection.SendGameStateUpdate(new GameState
+            {
+                TestProperty = 10
+            });
         }
 
         public void ReplayStep()
